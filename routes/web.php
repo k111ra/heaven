@@ -1,5 +1,3 @@
-
-
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -36,6 +34,9 @@ Route::get('/location-vehicule', function () {
 Route::get('/location-vehicule/vehicules', function () {
     return view('location-vehicule.vehicules');
 });
+Route::get('/location-vehicule/detail-vehicule', function () {
+    return view('location-vehicule.detail-vehicule');
+});
 
 Route::get('/consulting', function () {
     return view('consulting');
@@ -47,6 +48,9 @@ Route::get('/immobilier', function () {
 
 Route::get('/immobilier/proprietes', function () {
     return view('immobilier.proprietes');
+});
+Route::get('/immobilier/proprietes/detail', function () {
+    return view('immobilier.detail-propriete');
 });
 Route::get('/contact', function () {
     return view('contact');

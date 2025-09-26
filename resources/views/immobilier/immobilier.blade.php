@@ -34,7 +34,7 @@
                     <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-apartment.png" alt="Icon">
+                                <img class="img-fluid" src="img/icons8-apartment-100.png" alt="Icon">
                             </div>
                             <h6>Apartment</h6>
                             <span>123 Properties</span>

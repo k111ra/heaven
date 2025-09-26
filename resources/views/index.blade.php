@@ -2,25 +2,34 @@
 @section('title', 'Heaven League')
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid header bg-white p-0">
-        <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
-            <div class="col-md-6 p-5 mt-lg-5">
-                <h1 class="display-5 animated fadeIn mb-4">Trouvez la <span class="" style="color: #DAB46B96;">maison
-                        parfaite</span> pour vivre avec votre famille</h1>
-                <p class="animated fadeIn mb-4 pb-2">Vero elitr justo clita lorem. Ipsum dolor at sed stet
-                    sit diam no. Kasd rebum ipsum et diam justo clita et kasd rebum sea elitr.</p>
-                <a href="" class="btn btn-primary py-3 px-5 me-3 animated fadeIn">Visitez</a>
-            </div>
-            <div class="col-md-6 animated fadeIn">
-                <div class="owl-carousel header-carousel">
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="img/carousel-1.jpg" alt="">
-                    </div>
-                    <div class="owl-carousel-item">
-                        <img class="img-fluid" src="img/carousel-2.jpg" alt="">
-                    </div>
+    <div class="container-fluid p-0" style="margin-top: -120px;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="{{ asset('img/immobilier.png') }}" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('img/vehicule.png') }}" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="{{ asset('img/evenement.png') }}" alt="Third slide">
                 </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
     <!-- Header End -->
@@ -97,7 +106,8 @@
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-1.jpg" alt=""></a>
+                                    <a href=""><img class="img-fluid" src="img/property-1.jpg"
+                                            alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                         For Sell</div>
@@ -303,7 +313,8 @@
                                             alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        For Rent</div>
+                                        For Rent
+                                    </div>
                                     <div
                                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                         Villa</div>
@@ -590,7 +601,8 @@
                                             alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        For Rent</div>
+                                        For Rent
+                                    </div>
                                     <div
                                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                         Shop</div>
@@ -635,7 +647,8 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="property-item rounded overflow-hidden">
                         <div class="position-relative overflow-hidden">
-                            <a href=""><img class="img-fluid" src="img/property-4.jpg" alt="Véhicule 1"></a>
+                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
+                                    src="img/property-4.jpg" alt="Véhicule 1"></a>
                             <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
                                 louer</div>
                             <div
@@ -660,7 +673,8 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="property-item rounded overflow-hidden">
                         <div class="position-relative overflow-hidden">
-                            <a href=""><img class="img-fluid" src="img/property-5.jpg" alt="Véhicule 2"></a>
+                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
+                                    src="img/property-5.jpg" alt="Véhicule 2"></a>
                             <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
                                 louer</div>
                             <div
@@ -685,7 +699,8 @@
                 <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                     <div class="property-item rounded overflow-hidden">
                         <div class="position-relative overflow-hidden">
-                            <a href=""><img class="img-fluid" src="img/property-6.jpg" alt="Véhicule 3"></a>
+                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
+                                    src="img/property-6.jpg" alt="Véhicule 3"></a>
                             <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
                                 louer</div>
                             <div
