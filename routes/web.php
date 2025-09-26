@@ -1,3 +1,5 @@
+
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -15,4 +17,37 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('index');
+});
+Route::get('/a-propos', function () {
+    return view('a-propos');
+});
+
+Route::get('/nettoyage', function () {
+    return view('nettoyage');
+});
+
+Route::get('/evenementiel', function () {
+    return view('evenementiel');
+});
+
+Route::get('/location-vehicule', function () {
+    return view('location-vehicule.location-vehicule');
+});
+Route::get('/location-vehicule/vehicules', function () {
+    return view('location-vehicule.vehicules');
+});
+
+Route::get('/consulting', function () {
+    return view('consulting');
+});
+
+Route::get('/immobilier', function () {
+    return view('immobilier.immobilier');
+});
+
+Route::get('/immobilier/proprietes', function () {
+    return view('immobilier.proprietes');
+});
+Route::get('/contact', function () {
+    return view('contact');
 });
