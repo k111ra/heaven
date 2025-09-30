@@ -67,10 +67,13 @@
                 </div>
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">
+
                         <a href="">Accueil</a>
                         <a href="">Cookies</a>
                         <a href="">Aide</a>
                         <a href="">FAQ</a>
+                        <a href="">dashboard</a>
+                        <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                     </div>
                 </div>
             </div>

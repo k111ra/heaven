@@ -5,20 +5,21 @@
     <div class="container-fluid p-0" style="margin-top: -120px;">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"></li>
+                @foreach ($slides as $index => $slide)
+                    <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}"
+                        @if ($index === 0) class="active" @endif></li>
+                @endforeach
             </ol>
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="{{ asset('img/immobilier.png') }}" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ asset('img/vehicule.png') }}" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="{{ asset('img/evenement.png') }}" alt="Third slide">
-                </div>
+                @foreach ($slides as $index => $slide)
+                    <div class="carousel-item @if ($index === 0) active @endif">
+                        <img class="d-block w-100" src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->title }}">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>{{ $slide->title }}</h5>
+                            <p>{{ $slide->description }}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                 data-bs-slide="prev">
@@ -106,8 +107,7 @@
                         <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-1.jpg"
-                                            alt=""></a>
+                                    <a href=""><img class="img-fluid" src="img/property-1.jpg" alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                         For Sell</div>
