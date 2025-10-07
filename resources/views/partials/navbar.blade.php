@@ -20,9 +20,9 @@
                      <div class="dropdown-menu rounded-0 m-0">
                          <a href="{{ url('/immobilier') }}" class="dropdown-item">IMMOBILIER</a>
                          <a href="{{ url('/location-vehicule') }}" class="dropdown-item">LOCATION DE VOITURE</a>
-                         <a href="{{ url('/nettoyage') }}" class="dropdown-item">NETTOYAGE</a>
-                         <a href="{{ url('/evenementiel') }}" class="dropdown-item">ÉVÉNEMENTIEL</a>
-                         <a href="{{ url('/consulting') }}" class="dropdown-item">CONSULTING</a>
+                         <a href="{{ url('/services/nettoyage') }}" class="dropdown-item">NETTOYAGE</a>
+                         <a href="{{ url('/services/evenementiel') }}" class="dropdown-item">ÉVÉNEMENTIEL</a>
+                         <a href="{{ url('/services/consulting') }}" class="dropdown-item">CONSULTING</a>
 
                      </div>
                  </div>
@@ -35,7 +35,7 @@
                  </div> --}}
                  {{-- <a href="{{ url('/contact') }}" class="nav-item nav-link">Contact</a> --}}
              </div>
-             <a href="{{ url('/contact') }}" class="btn btn-primary px-3 d-none d-lg-flex">Contact</a>
+             <a href="{{ url('contact') }}" class="btn btn-primary px-3 d-none d-lg-flex">Contact</a>
          </div>
      </nav>
  </div>

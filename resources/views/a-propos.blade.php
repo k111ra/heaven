@@ -14,6 +14,6 @@
         </ul>
         <h3 class="mt-5">Contact</h3>
         <p>Pour toute question ou demande, n'hésitez pas à nous contacter via le formulaire ou par téléphone.</p>
-        <a class="btn btn-primary mt-3" href="/contact">Contactez nous</a>
+        <a class="btn btn-primary mt-3" href="{{ url('contact') }}">Contactez nous</a>
     </div>
 @endsection

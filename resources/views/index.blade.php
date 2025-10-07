@@ -53,19 +53,19 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-6 text-center mb-3">
-                    <a href="{{ url('/nettoyage') }}">
+                    <a href="{{ url('/services/nettoyage') }}">
                         <img src="{{ asset('img/icons8-housekeeping-100.png') }}" alt="Nettoyage" style="height:60px;">
                         <div class="mt-2" style="font-weight:500;">NETTOYAGE</div>
                     </a>
                 </div>
                 <div class="col-md-2 col-6 text-center mb-3">
-                    <a href="{{ url('/evenementiel') }}">
+                    <a href="{{ url('/services/evenementiel') }}">
                         <img src="{{ asset('img/icons8-event-100.png') }}" alt="Événementiel" style="height:60px;">
                         <div class="mt-2" style="font-weight:500;">ÉVÉNEMENTIEL</div>
                     </a>
                 </div>
                 <div class="col-md-2 col-6 text-center mb-3">
-                    <a href="{{ url('/consulting') }}">
+                    <a href="{{ url('/services/consulting') }}">
                         <img src="{{ asset('img/icons8-consulting-100.png') }}" alt="Consulting" style="height:60px;">
                         <div class="mt-2" style="font-weight:500;">CONSULTING</div>
                     </a>

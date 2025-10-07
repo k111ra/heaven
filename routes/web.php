@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\SlideController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -17,7 +20,11 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index']);
 Route::get('/a-propos', function () {
-    return view('pages.a-propos');
+    return view('a-propos');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 // Services
@@ -26,7 +33,7 @@ Route::prefix('services')->group(function () {
         return view('services.nettoyage.index');
     });
     Route::get('/evenementiel', function () {
-        return view('services.evenementiel.index');
+        return view('services.event.index');
     });
     Route::get('/consulting', function () {
         return view('services.consulting.index');
@@ -39,7 +46,7 @@ Route::prefix('immobilier')->group(function () {
         return view('services.immobilier.index');
     });
     Route::get('/proprietes', function () {
-        return view('services.immobilier.proprietes.index');
+        return view('services.immobilier.detail-propriete');
     });
     Route::get('/detail-propriete', function () {
         return view('services.immobilier.proprietes.detail');
@@ -55,8 +62,8 @@ Route::prefix('location-vehicule')->group(function () {
             return view('admin.dashboard');
         })->name('dashboard');
 
-        Route::resource('users', \App\Http\Controllers\Admin\UserController::class);
-        Route::resource('slides', \App\Http\Controllers\Admin\SlideController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('slides', SlideController::class);
 
         Route::get('/profile', function () {
             return view('admin.profile.edit');
@@ -90,8 +97,8 @@ Route::middleware('auth')->group(function () {
 Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
-        Route::get('/', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::resource('slides', App\Http\Controllers\Admin\SlideController::class)->names('admin.slides');
+        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+        Route::resource('slides', SlideController::class)->names('admin.slides');
     });
 
 require __DIR__ . '/auth.php';
