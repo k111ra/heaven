@@ -1,104 +1,104 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminProprieteController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\SlideController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\VehicleController;
+use App\Http\Controllers\Admin\VehicleCategoryController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
+| Routes publiques et administratives de l’application
+|--------------------------------------------------------------------------
 */
 
-Route::get('/', [HomeController::class, 'index']);
-Route::get('/a-propos', function () {
-    return view('a-propos');
-});
+// ===============================
+// 🔹 ROUTES PUBLIQUES
+// ===============================
 
-Route::get('/contact', function () {
-    return view('contact');
-});
+// Accueil
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-// Services
+// Pages simples
+Route::view('/a-propos', 'a-propos')->name('about');
+Route::view('/contact', 'contact')->name('contact');
+
+// ===============================
+// 🔹 SERVICES
+// ===============================
 Route::prefix('services')->group(function () {
-    Route::get('/nettoyage', function () {
-        return view('services.nettoyage.index');
-    });
-    Route::get('/evenementiel', function () {
-        return view('services.event.index');
-    });
-    Route::get('/consulting', function () {
-        return view('services.consulting.index');
-    });
+    Route::view('/nettoyage', 'services.nettoyage.index')->name('services.nettoyage');
+    Route::view('/evenementiel', 'services.event.index')->name('services.event');
+    Route::view('/consulting', 'services.consulting.index')->name('services.consulting');
 });
 
-// Immobilier
+// ===============================
+// 🔹 IMMOBILIER
+// ===============================
 Route::prefix('immobilier')->group(function () {
-    Route::get('/', function () {
-        return view('services.immobilier.index');
-    });
-    Route::get('/proprietes', function () {
-        return view('services.immobilier.detail-propriete');
-    });
-    Route::get('/detail-propriete', function () {
-        return view('services.immobilier.proprietes.detail');
-    });
+    Route::view('/', 'services.immobilier.index')->name('immobilier.index');
+    Route::view('/proprietes', 'services.immobilier.proprietes.index')->name('immobilier.proprietes');
+    Route::view('/detail-propriete', 'services.immobilier.proprietes.detail')->name('immobilier.detail');
 });
 
-// Location de véhicules
-Route::prefix('location-vehicule')->group(function () {
-
-    // Routes Admin
-    Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
-
-        Route::resource('users', UserController::class);
-        Route::resource('slides', SlideController::class);
-
-        Route::get('/profile', function () {
-            return view('admin.profile.edit');
-        })->name('profile');
-
-        Route::get('/settings', function () {
-            return view('admin.settings');
-        })->name('settings');
-    });
-    Route::get('/', function () {
-        return view('services.location-vehicule.index');
-    });
-    Route::get('/vehicules', function () {
-        return view('services.location-vehicule.vehicules.index');
-    });
-    Route::get('/detail-vehicule', function () {
-        return view('services.location-vehicule.vehicules.detail');
-    });
+// ===============================
+// 🔹 LOCATION DE VÉHICULES
+// ===============================
+Route::prefix('location-vehicule')->name('location-vehicule.')->group(function () {
+    Route::get('/', [App\Http\Controllers\VehiclePublicController::class, 'index'])->name('index');
+    Route::get('/vehicules', [App\Http\Controllers\VehiclePublicController::class, 'list'])->name('list');
+    Route::get('/{vehicle}', [App\Http\Controllers\VehiclePublicController::class, 'show'])->name('show')
+        ->where('vehicle', '[0-9]+');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// ===============================
+// 🔹 TABLEAU DE BORD UTILISATEUR
+// ===============================
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+    // Profil utilisateur
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// ===============================
+// 🔹 ADMINISTRATION
+// ===============================
 Route::prefix('admin')
-    ->middleware(['auth'])
+    ->as('admin.')
+    ->middleware(['auth', 'admin'])
     ->group(function () {
-        Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-        Route::resource('slides', SlideController::class)->names('admin.slides');
+        // Tableau de bord
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        // Gestion des utilisateurs et slides
+        Route::resource('users', UserController::class);
+        Route::resource('slides', SlideController::class);
+
+        // Gestion des véhicules
+        Route::resource('vehicules', VehicleController::class, ['parameters' => ['vehicules' => 'vehicle']]);
+        Route::resource('vehicule-categories', VehicleCategoryController::class);
+
+        // Pages internes admin
+        Route::view('/profile', 'admin.profile.edit')->name('profile');
+        Route::view('/settings', 'admin.settings')->name('settings');
+
+        // Gestion des propriétés (immobilier)
+        Route::resource('proprietes', AdminProprieteController::class)
+            ->except(['create', 'edit', 'show']);
     });
 
+// ===============================
+// 🔹 AUTH ROUTES
+// ===============================
+require __DIR__ . '/auth.php';
+// ===============================
 require __DIR__ . '/auth.php';

@@ -56,89 +56,89 @@
             </div>
             <!-- Search End -->
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
-                                    src="{{ asset('img/property-4.jpg') }}" alt=""></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
+                @forelse($vehicles as $vehicle)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="property-item rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <a href="{{ route('location-vehicule.show', $vehicle) }}">
+                                    @if ($vehicle->images->isNotEmpty())
+                                        <img class="img-fluid"
+                                            src="{{ asset('storage/' . $vehicle->images->first()->path) }}"
+                                            alt="{{ $vehicle->name }}">
+                                    @else
+                                        <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}"
+                                            alt="{{ $vehicle->name }}">
+                                    @endif
+                                </a>
+                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    À louer
+                                </div>
+                                <div
+                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                    {{ $vehicle->category->name ?? 'Non catégorisé' }}
+                                </div>
                             </div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                Voiture</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">20 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="{{ url('/location-vehicule/detail-vehicule') }}">Toyota
-                                Corolla</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Automatique</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>5 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Essence</small>
+                            <div class="p-4 pb-0">
+                                <h5 class="text-primary mb-3">{{ number_format($vehicle->price_per_day, 0, ',', ' ') }}
+                                    FCFA/jour</h5>
+                                <a class="d-block h5 mb-2"
+                                    href="{{ route('location-vehicule.show', $vehicle) }}">{{ $vehicle->name }}</a>
+                                <p><i
+                                        class="fa fa-map-marker-alt text-primary me-2"></i>{{ $vehicle->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                </p>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-car text-primary me-2"></i>{{ $vehicle->transmission }}</small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-user text-primary me-2"></i>{{ $vehicle->seats }} places</small>
+                                <small class="flex-fill text-center py-2"><i
+                                        class="fa fa-gas-pump text-primary me-2"></i>{{ $vehicle->fuel_type }}</small>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="#"><img class="img-fluid" src="{{ asset('img/property-5.jpg') }}"
-                                    alt=""></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
-                            </div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                SUV</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">30 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="#">Hyundai Tucson</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>5 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>Aucun véhicule disponible.</p>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="#"><img class="img-fluid" src="{{ asset('img/property-6.jpg') }}"
-                                    alt=""></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
-                            </div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                Minibus</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">50 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="#">Toyota Hiace</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>15 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="btn btn-primary py-3 px-5" href="#">Voir plus de véhicules</a>
-                </div>
+                @endforelse
             </div>
         </div>
     </div>
+@endsection
+<small class="flex-fill text-center border-end py-2"><i class="fa fa-car text-primary me-2"></i>Manuelle</small>
+<small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>5 places</small>
+<small class="flex-fill text-center py-2"><i class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+    <div class="property-item rounded overflow-hidden">
+        <div class="position-relative overflow-hidden">
+            <a href="#"><img class="img-fluid" src="{{ asset('img/property-6.jpg') }}" alt=""></a>
+            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
+            </div>
+            <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                Minibus</div>
+        </div>
+        <div class="p-4 pb-0">
+            <h5 class="text-primary mb-3">50 000 FCFA/jour</h5>
+            <a class="d-block h5 mb-2" href="#">Toyota Hiace</a>
+            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
+        </div>
+        <div class="d-flex border-top">
+            <small class="flex-fill text-center border-end py-2"><i
+                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
+            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>15
+                places</small>
+            <small class="flex-fill text-center py-2"><i class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
+        </div>
+    </div>
+</div>
+<div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+    <a class="btn btn-primary py-3 px-5" href="#">Voir plus de véhicules</a>
+</div>
+</div>
+</div>
+</div>
 @endsection

@@ -28,7 +28,7 @@
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ url('/location-vehicule/vehicules') }}">
+                        href="{{ route('location-vehicule.list') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="{{ asset('img/icons8-car-100.png') }}" alt="Voiture">
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ url('/location-vehicule/vehicules') }}">
+                        href="{{ route('location-vehicule.list') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="{{ asset('img/icons8-suv-100.png') }}" alt="SUV">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ url('/location-vehicule/vehicules') }}">
+                        href="{{ route('location-vehicule.list') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="{{ asset('img/icons8-minibus-100.png') }}" alt="Minibus">
@@ -64,7 +64,7 @@
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ url('/location-vehicule/vehicules') }}">
+                        href="{{ route('location-vehicule.list') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="{{ asset('img/icons8-truck-100.png') }}" alt="Camion">

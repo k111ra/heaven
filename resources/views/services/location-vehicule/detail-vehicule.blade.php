@@ -5,36 +5,41 @@
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
                     <div class="about-img position-relative overflow-hidden p-5 pe-0">
-                        <img class="img-fluid w-100" src="{{ asset('img/property-4.jpg') }}">
+                        @if ($vehicle->images->isNotEmpty())
+                            <img class="img-fluid w-100" src="{{ asset('storage/' . $vehicle->images->first()->path) }}"
+                                alt="{{ $vehicle->name }}">
+                        @else
+                            <img class="img-fluid w-100" src="{{ asset('img/property-4.jpg') }}" alt="{{ $vehicle->name }}">
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">Toyota Corolla</h1>
-                    <p class="mb-4">Véhicule confortable et économique, parfait pour vos déplacements en ville.</p>
-                    <p><strong>Prix :</strong> 20 000 FCFA/jour</p>
+                    <h1 class="mb-4">{{ $vehicle->name }}</h1>
+                    <p class="mb-4">{{ $vehicle->description }}</p>
+                    <p><strong>Prix :</strong> {{ number_format($vehicle->price_per_day, 0, ',', ' ') }} FCFA/jour</p>
                     <div class="row g-4 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-car fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Transmission: Automatique</h6>
+                                <h6 class="mb-0">Transmission: {{ $vehicle->transmission }}</h6>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-user fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Capacité: 5 places</h6>
+                                <h6 class="mb-0">Capacité: {{ $vehicle->seats }} places</h6>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-gas-pump fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Carburant: Essence</h6>
+                                <h6 class="mb-0">Carburant: {{ $vehicle->fuel_type }}</h6>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-cog fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Année: 2022</h6>
+                                <h6 class="mb-0">Année: {{ $vehicle->year }}</h6>
                             </div>
                         </div>
                     </div>

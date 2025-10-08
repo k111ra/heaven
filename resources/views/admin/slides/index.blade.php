@@ -147,7 +147,7 @@
                                         <img src="{{ Storage::url($slide->image) }}" alt="Image actuelle"
                                             class="img-thumbnail" style="max-height: 200px">
                                     @else
-                                        <div class="alert alert-info">Aucune image</div>
+                                        <div class="alert alert-info">Aucune image disponible</div>
                                     @endif
                                 </div>
                                 <label class="form-label">Nouvelle image (optionnel)</label>

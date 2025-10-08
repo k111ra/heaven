@@ -34,6 +34,8 @@ class SlideController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+            'order' => 'required|integer',
+            'active' => 'boolean',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -41,6 +43,9 @@ class SlideController extends Controller
             $path = $request->file('image')->store('slides', 'public');
             $validated['image'] = $path;
         }
+
+        // Convertir le checkbox en boolean
+        $validated['active'] = $request->has('active') ? true : false;
 
         Slide::create($validated);
 
@@ -72,16 +77,25 @@ class SlideController extends Controller
         $validated = $request->validate([
             'title' => 'required|max:255',
             'description' => 'required',
+            'order' => 'required|integer',
+            'active' => 'boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
+        // Gérer l'upload d'image
         if ($request->hasFile('image')) {
-            if ($slide->image) {
+            // Supprimer l'ancienne image si elle existe
+            if ($slide->image && Storage::disk('public')->exists($slide->image)) {
                 Storage::disk('public')->delete($slide->image);
             }
-            $path = $request->file('image')->store('slides', 'public');
-            $validated['image'] = $path;
+
+            // Uploader la nouvelle image
+            $imagePath = $request->file('image')->store('slides', 'public');
+            $validated['image'] = $imagePath;
         }
+
+        // Convertir le checkbox en boolean
+        $validated['active'] = $request->has('active') ? true : false;
 
         $slide->update($validated);
 

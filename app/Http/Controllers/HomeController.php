@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Slide;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,6 +16,8 @@ class HomeController extends Controller
     public function index()
     {
         $slides = Slide::where('active', true)->orderBy('order')->get();
-        return view('index')->with('slides', $slides);
+        $vehicules = Vehicle::with(['images', 'category'])->where('is_available', true)->take(6)->get();
+
+        return view('index', compact('slides', 'vehicules'));
     }
 }

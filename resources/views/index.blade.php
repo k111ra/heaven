@@ -419,7 +419,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
                                     <a href=""><img class="img-fluid" src="img/property-6.jpg"
@@ -447,8 +447,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 text-center">
-                            <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier') }}">Voir plus proprietes</a>
                         </div>
                     </div>
                 </div>
@@ -457,7 +457,7 @@
                         <div class="col-lg-4 col-md-6">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
-                                    <a href=""><img class="img-fluid" src="img/property-1.jpg"
+                                    <a href=""><img class="img-fluid" src="{{ asset('img/property-1.jpg') }}"
                                             alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
@@ -594,15 +594,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6">
+                        <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                             <div class="property-item rounded overflow-hidden">
                                 <div class="position-relative overflow-hidden">
                                     <a href=""><img class="img-fluid" src="img/property-6.jpg"
                                             alt=""></a>
                                     <div
                                         class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
-                                        For Rent
-                                    </div>
+                                        For Rent</div>
                                     <div
                                         class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
                                         Shop</div>
@@ -623,8 +622,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 text-center">
-                            <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                        <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier') }}">Voir plus proprietes</a>
                         </div>
                     </div>
                 </div>
@@ -644,86 +643,57 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
-                                    src="img/property-4.jpg" alt="Véhicule 1"></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
-                                louer</div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                Voiture</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">20 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="">Toyota Corolla</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Automatique</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>5 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Essence</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
-                                    src="img/property-5.jpg" alt="Véhicule 2"></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
-                                louer</div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                SUV</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">30 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="">Hyundai Tucson</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>5 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
+                @forelse($vehicules as $vehicule)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="property-item rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden">
+                                <a href="{{ url('/location-vehicule/' . $vehicule->id) }}">
+                                    @if ($vehicule->images->isNotEmpty())
+                                        <img class="img-fluid"
+                                            src="{{ asset('storage/' . $vehicule->images->first()->path) }}"
+                                            alt="{{ $vehicule->name }}">
+                                    @else
+                                        <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}"
+                                            alt="{{ $vehicule->name }}">
+                                    @endif
+                                </a>
+                                <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    À louer
+                                </div>
+                                <div
+                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                    {{ $vehicule->category->name ?? 'Non catégorisé' }}
+                                </div>
+                            </div>
+                            <div class="p-4 pb-0">
+                                <h5 class="text-primary mb-3">{{ number_format($vehicule->price_per_day, 0, ',', ' ') }}
+                                    FCFA/jour</h5>
+                                <a class="d-block h5 mb-2"
+                                    href="{{ url('/location-vehicule/' . $vehicule->id) }}">{{ $vehicule->name }}</a>
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>
+                                    {{ $vehicule->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                </p>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-car text-primary me-2"></i>{{ $vehicule->transmission }}
+                                </small>
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa fa-user text-primary me-2"></i>{{ $vehicule->seats }} places
+                                </small>
+                                <small class="flex-fill text-center py-2">
+                                    <i class="fa fa-gas-pump text-primary me-2"></i>{{ $vehicule->fuel_type }}
+                                </small>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <div class="property-item rounded overflow-hidden">
-                        <div class="position-relative overflow-hidden">
-                            <a href="{{ url('/location-vehicule/detail-vehicule') }}"><img class="img-fluid"
-                                    src="img/property-6.jpg" alt="Véhicule 3"></a>
-                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À
-                                louer</div>
-                            <div
-                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                Minibus</div>
-                        </div>
-                        <div class="p-4 pb-0">
-                            <h5 class="text-primary mb-3">50 000 FCFA/jour</h5>
-                            <a class="d-block h5 mb-2" href="">Toyota Hiace</a>
-                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-                        </div>
-                        <div class="d-flex border-top">
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
-                            <small class="flex-fill text-center border-end py-2"><i
-                                    class="fa fa-user text-primary me-2"></i>15 places</small>
-                            <small class="flex-fill text-center py-2"><i
-                                    class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
-                        </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <p>Aucun véhicule disponible pour le moment.</p>
                     </div>
-                </div>
+                @endforelse
                 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="btn btn-primary py-3 px-5" href="{{ url('location-vehicule') }}">Voir plus</a>
+                    <a class="btn btn-primary py-3 px-5" href="{{ route('location-vehicule.index') }}">Voir plus</a>
                 </div>
             </div>
         </div>
@@ -816,6 +786,188 @@
                 </div>
             </div>
         </div>
+    </div>
+    <!-- Section Consulting End -->
+
+
+
+    <!-- Call to Action Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="bg-light rounded p-3">
+                <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
+                    <div class="row g-5 align-items-center">
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+                            <img class="img-fluid rounded w-100" src="img/call-to-action.jpg" alt="">
+                        </div>
+                        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+                            <div class="mb-4">
+                                <h1 class="mb-3">Contactez notre agent certifié</h1>
+                                <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit
+                                    diam justo sed vero dolor duo.</p>
+                            </div>
+                            <a href="{{ url('/contact') }}" class="btn btn-primary py-3 px-4 me-2"><i
+                                    class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                            <a href="{{ url('/contact') }}" class="btn btn-dark py-3 px-4"><i
+                                    class="fa fa-calendar-alt me-2"></i>demandez une visite</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Call to Action End -->
+
+
+    <!-- Team Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">Nos Agents</h1>
+                <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit
+                    eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="img/team-1.jpg" alt="">
+                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 mt-3">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="img/team-2.jpg" alt="">
+                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 mt-3">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="img/team-3.jpg" alt="">
+                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 mt-3">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="team-item rounded overflow-hidden">
+                        <div class="position-relative">
+                            <img class="img-fluid" src="img/team-4.jpg" alt="">
+                            <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-square mx-1" href=""><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 mt-3">
+                            <h5 class="fw-bold mb-0">Full Name</h5>
+                            <small>Designation</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <h1 class="mb-3">Nos Clients disent !</h1>
+                <p>Eirmod sed ipsum dolor sit rebum labore magna erat. Tempor ut dolore lorem kasd vero ipsum sit
+                    eirmod sit. Ipsum diam justo sed rebum vero dolor duo.</p>
+            </div>
+            <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-4">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet
+                            diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-1.jpg"
+                                style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-4">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet
+                            diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-2.jpg"
+                                style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-item bg-light rounded p-3">
+                    <div class="bg-white border rounded p-4">
+                        <p>Tempor stet labore dolor clita stet diam amet ipsum dolor duo ipsum rebum stet dolor amet
+                            diam stet. Est stet ea lorem amet est kasd kasd erat eos</p>
+                        <div class="d-flex align-items-center">
+                            <img class="img-fluid flex-shrink-0 rounded" src="img/testimonial-3.jpg"
+                                style="width: 45px; height: 45px;">
+                            <div class="ps-3">
+                                <h6 class="fw-bold mb-1">Client Name</h6>
+                                <small>Profession</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
+            <img class="img-fluid w-100"
+                src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80"
+                alt="Consulting">
+        </div>
+        <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
+            <h1 class="mb-4">Consulting</h1>
+            <p class="mb-4">Bénéficiez de notre expertise en consulting pour optimiser vos projets immobiliers,
+                événementiels ou commerciaux.</p>
+            <a class="btn btn-primary py-2 px-4 mt-2" href="#">{{ url('consulting') }}</a>
+        </div>
+    </div>
+    </div>
     </div>
     <!-- Section Consulting End -->
 
