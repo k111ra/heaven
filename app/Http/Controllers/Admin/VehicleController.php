@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use App\Models\VehicleCategory;
+use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -56,7 +57,9 @@ class VehicleController extends Controller
                     $path = $image->store('vehicles', 'public');
                     $vehicle->images()->create([
                         'path' => $path,
-                        'is_primary' => $index === 0
+                        'order' => $index,
+                        'is_primary' => $index === 0,
+                        'alt_text' => $validated['name']
                     ]);
                 }
             }
@@ -67,7 +70,7 @@ class VehicleController extends Controller
         } catch (\Exception $e) {
             return back()
                 ->withInput()
-                ->with('error', 'Une erreur est survenue lors de la création du véhicule');
+                ->with('error', 'Une erreur est survenue lors de la création du véhicule: ' . $e->getMessage());
         }
     }
 
@@ -90,20 +93,36 @@ class VehicleController extends Controller
             'seats' => 'required|integer|min:1|max:50',
             'price_per_day' => 'required|numeric|min:0',
             'description' => 'required|string',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'is_available' => 'boolean'
+            'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'is_available' => 'boolean',
+            'remove_images' => 'array',
+            'remove_images.*' => 'integer|exists:images,id'
         ]);
 
-        // Gérer l'upload d'image
-        if ($request->hasFile('image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($vehicle->image && Storage::disk('public')->exists($vehicle->image)) {
-                Storage::disk('public')->delete($vehicle->image);
+        // Supprimer les images sélectionnées
+        if ($request->has('remove_images')) {
+            foreach ($request->remove_images as $imageId) {
+                $image = $vehicle->images()->find($imageId);
+                if ($image) {
+                    Storage::disk('public')->delete($image->path);
+                    $image->delete();
+                }
             }
+        }
 
-            // Uploader la nouvelle image
-            $imagePath = $request->file('image')->store('vehicles', 'public');
-            $validated['image'] = $imagePath;
+        // Ajouter nouvelles images
+        if ($request->hasFile('images')) {
+            $existingCount = $vehicle->images()->count();
+            foreach ($request->file('images') as $index => $file) {
+                $imagePath = $file->store('vehicles', 'public');
+
+                $vehicle->images()->create([
+                    'path' => $imagePath,
+                    'order' => $existingCount + $index,
+                    'is_primary' => $existingCount === 0 && $index === 0,
+                    'alt_text' => $vehicle->name
+                ]);
+            }
         }
 
         // Convertir le checkbox en boolean
@@ -117,14 +136,15 @@ class VehicleController extends Controller
 
     public function destroy(Vehicle $vehicle)
     {
-        if ($vehicle->image) {
-            Storage::disk('public')->delete($vehicle->image);
+        // Supprimer toutes les images
+        foreach ($vehicle->images as $image) {
+            Storage::disk('public')->delete($image->path);
+            $image->delete();
         }
 
         $vehicle->delete();
 
-        return redirect()
-            ->route('admin.vehicules.index')
-            ->with('success', 'Véhicule supprimé avec succès');
+        return redirect()->route('admin.vehicules.index')
+            ->with('success', 'Véhicule supprimé avec succès.');
     }
 }

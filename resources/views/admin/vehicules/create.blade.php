@@ -174,8 +174,13 @@
                                 <label for="images" class="btn btn-outline-primary">
                                     <i class="fas fa-upload me-2"></i>Choisir des images
                                     <input type="file" class="d-none @error('images.*') is-invalid @enderror"
-                                        id="images" name="images[]" accept="image/*" multiple>
+                                        id="images" name="images[]" accept="image/*" multiple required>
                                 </label>
+                            </div>
+
+                            <div class="form-text mt-2">
+                                Formats acceptés : JPEG, PNG, JPG, GIF. Taille maximale : 2 Mo par image.
+                                La première image sera l'image principale.
                             </div>
 
                             @error('images.*')
@@ -240,21 +245,35 @@
             const preview = document.getElementById('imagePreview');
             preview.innerHTML = '';
 
-            if (e.target.files) {
+            if (e.target.files && e.target.files.length > 0) {
+                const row = document.createElement('div');
+                row.className = 'row g-2';
+                preview.appendChild(row);
+
                 Array.from(e.target.files).forEach((file, index) => {
                     const reader = new FileReader();
                     reader.onload = function(e) {
-                        preview.innerHTML += `
-                            <div class="col-md-4">
-                                <div class="position-relative">
-                                    <img src="${e.target.result}" class="img-fluid rounded" alt="Aperçu ${index + 1}">
-                                    ${index === 0 ? '<span class="badge bg-primary position-absolute top-0 end-0 m-2">Principal</span>' : ''}
-                                </div>
+                        const colDiv = document.createElement('div');
+                        colDiv.className = e.target.files?.length > 1 ? 'col-6' : 'col-12';
+
+                        colDiv.innerHTML = `
+                            <div class="position-relative">
+                                <img src="${e.target.result}" class="img-fluid rounded w-100"
+                                     style="height: 120px; object-fit: cover;" alt="Aperçu ${index + 1}">
+                                ${index === 0 ? '<span class="badge bg-primary position-absolute top-0 end-0 m-1">Principal</span>' : ''}
                             </div>
                         `;
+                        row.appendChild(colDiv);
                     }
                     reader.readAsDataURL(file);
                 });
+            } else {
+                preview.innerHTML = `
+                    <div class="col-12">
+                        <i class="fas fa-images fa-3x text-muted"></i>
+                        <p class="text-muted mt-2">Sélectionnez une ou plusieurs images</p>
+                    </div>
+                `;
             }
         });
     </script>

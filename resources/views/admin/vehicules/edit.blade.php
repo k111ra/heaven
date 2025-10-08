@@ -162,25 +162,72 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <label for="image" class="form-label">Image du véhicule</label>
-                                        @if ($vehicle->image && Storage::disk('public')->exists($vehicle->image))
-                                            <div class="mb-2">
-                                                <img src="{{ Storage::url($vehicle->image) }}"
-                                                    alt="{{ $vehicle->name }}" class="img-thumbnail"
-                                                    style="max-height: 200px" id="current-image">
-                                                <p class="text-muted small mt-1">Image actuelle</p>
+                                        <label for="images" class="form-label">Images du véhicule</label>
+
+                                        @if ($vehicle->images->isNotEmpty())
+                                            <div class="mb-3">
+                                                <label class="form-label">Images actuelles</label>
+                                                <div class="row g-2">
+                                                    @foreach ($vehicle->images as $image)
+                                                        <div class="col-md-4">
+                                                            <div class="position-relative">
+                                                                <img src="{{ asset('storage/' . $image->path) }}"
+                                                                    alt="{{ $vehicle->name }}"
+                                                                    class="img-thumbnail w-100"
+                                                                    style="height: 150px; object-fit: cover;">
+                                                                @if ($image->is_primary)
+                                                                    <span
+                                                                        class="position-absolute top-0 start-0 badge bg-primary m-1">Principal</span>
+                                                                @endif
+                                                                <div class="position-absolute bottom-0 end-0 m-1">
+                                                                    <div
+                                                                        class="form-check form-check-inline bg-white rounded p-1">
+                                                                        <input type="checkbox" name="remove_images[]"
+                                                                            value="{{ $image->id }}"
+                                                                            class="form-check-input"
+                                                                            id="remove_{{ $image->id }}">
+                                                                        <label class="form-check-label small text-danger"
+                                                                            for="remove_{{ $image->id }}">
+                                                                            <i class="fas fa-trash"></i>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
+                                                <small class="text-muted">Cochez les images que vous souhaitez
+                                                    supprimer</small>
                                             </div>
                                         @endif
-                                        <input type="file" class="form-control @error('image') is-invalid @enderror"
-                                            id="image" name="image" accept="image/*">
-                                        <div class="form-text">
-                                            Formats acceptés : JPEG, PNG, JPG, GIF. Taille maximale : 2 Mo.
-                                            @if ($vehicle->image)
-                                                Laissez vide pour conserver l'image actuelle.
-                                            @endif
+
+                                        <div class="mb-2">
+                                            <label class="form-label">Ajouter de nouvelles images</label>
+                                            <input type="file"
+                                                class="form-control @error('images') is-invalid @enderror" id="images"
+                                                name="images[]" accept="image/*" multiple>
+                                            <div class="form-text">
+                                                Formats acceptés : JPEG, PNG, JPG, GIF. Taille maximale : 2 Mo par image.
+                                                Maintenez Ctrl/Cmd pour sélectionner plusieurs images.
+                                                @if ($vehicle->images->isEmpty())
+                                                    La première image sera automatiquement définie comme image principale.
+                                                @endif
+                                            </div>
                                         </div>
-                                        @error('image')
+
+                                        <!-- Prévisualisation des nouvelles images -->
+                                        <div id="imagePreview" class="row g-2 mt-2" style="display: none;">
+                                            <div class="col-12">
+                                                <label class="form-label small text-muted">Aperçu des nouvelles images
+                                                    :</label>
+                                            </div>
+                                        </div>
+
+                                        @error('images')
                                             <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                        @error('images.*')
+                                            <div class="text-danger small mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
 
@@ -255,9 +302,12 @@
                     </div>
                     <div class="card-body">
                         <div class="text-center mb-3">
-                            @if ($vehicle->image)
-                                <img src="{{ Storage::url($vehicle->image) }}" alt="{{ $vehicle->name }}"
-                                    class="img-fluid rounded" style="max-height: 200px">
+                            @if ($vehicle->images->isNotEmpty())
+                                <img src="{{ asset('storage/' . $vehicle->images->first()->path) }}"
+                                    alt="{{ $vehicle->name }}" class="img-fluid rounded" style="max-height: 200px">
+                                @if ($vehicle->images->count() > 1)
+                                    <p class="text-muted small mt-1">{{ $vehicle->images->count() }} images au total</p>
+                                @endif
                             @else
                                 <div class="border rounded py-5 mb-3">
                                     <i class="fas fa-image fa-3x text-muted"></i>
@@ -308,22 +358,76 @@
 
 @push('scripts')
     <script>
-        document.getElementById('image')?.addEventListener('change', function(e) {
-            if (e.target.files && e.target.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const currentImage = document.getElementById('current-image');
-                    const sidebarImage = document.querySelector('.col-lg-4 img.img-fluid');
+        document.getElementById('images')?.addEventListener('change', function(e) {
+            const preview = document.getElementById('imagePreview');
+            const sidebarImage = document.querySelector('.col-lg-4 img.img-fluid');
 
-                    if (currentImage) {
-                        currentImage.src = e.target.result;
+            // Vider la prévisualisation précédente
+            preview.innerHTML = '';
+
+            if (e.target.files && e.target.files.length > 0) {
+                preview.style.display = 'block';
+
+                // Ajouter le titre
+                const titleDiv = document.createElement('div');
+                titleDiv.className = 'col-12';
+                titleDiv.innerHTML =
+                    '<label class="form-label small text-muted">Aperçu des nouvelles images :</label>';
+                preview.appendChild(titleDiv);
+
+                // Traiter chaque fichier
+                Array.from(e.target.files).forEach((file, index) => {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const colDiv = document.createElement('div');
+                        colDiv.className = 'col-md-4';
+
+                        colDiv.innerHTML = `
+                            <div class="position-relative">
+                                <img src="${e.target.result}" class="img-thumbnail w-100"
+                                     style="height: 120px; object-fit: cover;" alt="Nouvelle image ${index + 1}">
+                                <span class="position-absolute top-0 end-0 badge bg-success m-1">Nouveau</span>
+                                ${index === 0 && !hasExistingImages() ? '<span class="position-absolute top-0 start-0 badge bg-primary m-1">Principal</span>' : ''}
+                            </div>
+                        `;
+                        preview.appendChild(colDiv);
+
+                        // Mettre à jour l'image de la sidebar avec la première nouvelle image
+                        if (index === 0 && sidebarImage) {
+                            sidebarImage.src = e.target.result;
+                        }
                     }
-                    if (sidebarImage) {
-                        sidebarImage.src = e.target.result;
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                preview.style.display = 'none';
+
+                // Remettre l'image originale dans la sidebar si elle existe
+                if (sidebarImage && hasExistingImages()) {
+                    const originalImage = document.querySelector('.col-md-4 img[src*="storage"]');
+                    if (originalImage) {
+                        sidebarImage.src = originalImage.src;
                     }
                 }
-                reader.readAsDataURL(e.target.files[0]);
             }
+        });
+
+        function hasExistingImages() {
+            return document.querySelectorAll('input[name="remove_images[]"]').length > 0;
+        }
+
+        // Gérer la suppression d'images
+        document.querySelectorAll('input[name="remove_images[]"]').forEach(function(checkbox) {
+            checkbox.addEventListener('change', function() {
+                const imageContainer = this.closest('.col-md-4');
+                if (this.checked) {
+                    imageContainer.style.opacity = '0.5';
+                    imageContainer.style.filter = 'grayscale(100%)';
+                } else {
+                    imageContainer.style.opacity = '1';
+                    imageContainer.style.filter = 'none';
+                }
+            });
         });
     </script>
 @endpush
