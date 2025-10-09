@@ -13,6 +13,37 @@
             </a>
         </div>
 
+        <!-- Messages d'erreur globaux -->
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong>Erreur de validation :</strong>
+                </div>
+                <ul class="mb-0 mt-2">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        <!-- Messages de succès ou d'erreur -->
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="fas fa-check-circle me-2"></i>{{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-circle me-2"></i>{{ session('error') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <!-- Formulaire -->
         <div class="row">
             <!-- Colonne principale -->
@@ -27,12 +58,16 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Nom du véhicule</label>
+                                        <label for="name" class="form-label">
+                                            Nom du véhicule <span class="text-danger">*</span>
+                                        </label>
                                         <input type="text" class="form-control @error('name') is-invalid @enderror"
                                             id="name" name="name" value="{{ old('name', $vehicle->name) }}"
                                             required>
                                         @error('name')
-                                            <div class="invalid-feedback">{{ $message }}</div>
+                                            <div class="invalid-feedback">
+                                                <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                            </div>
                                         @enderror
                                     </div>
 
@@ -105,8 +140,8 @@
 
                                     <div class="mb-3">
                                         <label for="fuel_type" class="form-label">Type de carburant</label>
-                                        <select class="form-select @error('fuel_type') is-invalid @enderror" id="fuel_type"
-                                            name="fuel_type" required>
+                                        <select class="form-select @error('fuel_type') is-invalid @enderror"
+                                            id="fuel_type" name="fuel_type" required>
                                             <option value="">Sélectionner un type de carburant</option>
                                             <option value="essence"
                                                 {{ old('fuel_type', $vehicle->fuel_type) == 'essence' ? 'selected' : '' }}>
@@ -427,6 +462,57 @@
                     imageContainer.style.opacity = '1';
                     imageContainer.style.filter = 'none';
                 }
+            });
+        });
+
+        // Validation côté client
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    const requiredFields = this.querySelectorAll('[required]');
+                    let hasErrors = false;
+
+                    requiredFields.forEach(field => {
+                        if (!field.value.trim()) {
+                            hasErrors = true;
+                            field.classList.add('is-invalid');
+                        } else {
+                            field.classList.remove('is-invalid');
+                        }
+                    });
+
+                    if (hasErrors) {
+                        e.preventDefault();
+
+                        // Afficher un message d'erreur
+                        const alertDiv = document.createElement('div');
+                        alertDiv.className = 'alert alert-danger alert-dismissible fade show';
+                        alertDiv.innerHTML = `
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>Veuillez remplir tous les champs obligatoires.</strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        `;
+
+                        document.querySelector('.container-fluid').insertBefore(alertDiv, document
+                            .querySelector('.row'));
+
+                        // Défiler vers le haut
+                        window.scrollTo(0, 0);
+                    }
+                });
+            }
+
+            // Validation temps réel
+            document.querySelectorAll('[required]').forEach(field => {
+                field.addEventListener('blur', function() {
+                    if (!this.value.trim()) {
+                        this.classList.add('is-invalid');
+                    } else {
+                        this.classList.remove('is-invalid');
+                    }
+                });
             });
         });
     </script>

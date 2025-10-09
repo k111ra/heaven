@@ -13,7 +13,7 @@ class Property extends Model
     // use SoftDeletes;
 
     /** @var string */
-    protected $table = 'propriete';
+    protected $table = 'proprietes';
 
     /**
      * Champs autorisés en écriture de masse
@@ -23,16 +23,17 @@ class Property extends Model
         'description',
         'address',
         'price',
+        'status',
         'surface',
         'bedrooms',
         'bathrooms',
         'garage',
         'image',
-        'agent_id',
+        'agent_id'
     ];
 
     /**
-     * Casts (FCFA sans décimales -> decimal:0 ; si tu veux 2 décimales: decimal:2)
+     * Casts ($ CA sans décimales -> decimal:0 ; si tu veux 2 décimales: decimal:2)
      */
     protected $casts = [
         'price'     => 'decimal:0',
@@ -69,7 +70,7 @@ class Property extends Model
      |===========================*/
 
     /**
-     * FCFA joliment formaté pour l’affichage
+     * $ CA joliment formaté pour l’affichage
      * $property->price_formatted → "150 000 000"
      */
     public function getPriceFormattedAttribute(): string

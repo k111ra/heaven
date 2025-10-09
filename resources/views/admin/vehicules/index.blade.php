@@ -50,7 +50,7 @@
                                     <td>{{ $vehicle->name }}</td>
                                     <td>{{ $vehicle->category->name }}</td>
                                     <td>{{ $vehicle->brand }}</td>
-                                    <td>{{ number_format($vehicle->price_per_day, 0, ',', ' ') }} FCFA</td>
+                                    <td>{{ number_format($vehicle->price_per_day, 0, ',', ' ') }} $ CA</td>
                                     <td>
                                         <span class="badge bg-{{ $vehicle->is_available ? 'success' : 'danger' }}">
                                             {{ $vehicle->is_available ? 'Disponible' : 'Indisponible' }}

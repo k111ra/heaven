@@ -14,6 +14,7 @@ class Slide extends Model
     protected $fillable = [
         'title',
         'description',
+        'image',
         'order',
         'active'
     ];
@@ -21,6 +22,11 @@ class Slide extends Model
     protected $casts = [
         'active' => 'boolean',
         'order' => 'integer',
+    ];
+
+    protected $attributes = [
+        'active' => 1,  // 1 pour true en base de données
+        'order' => 0,
     ];
 
     public function images(): MorphMany

@@ -80,7 +80,7 @@
                             </div>
                             <div class="p-4 pb-0">
                                 <h5 class="text-primary mb-3">{{ number_format($vehicle->price_per_day, 0, ',', ' ') }}
-                                    FCFA/jour</h5>
+                                    $ CA/jour</h5>
                                 <a class="d-block h5 mb-2"
                                     href="{{ route('location-vehicule.show', $vehicle) }}">{{ $vehicle->name }}</a>
                                 <p><i
@@ -122,7 +122,7 @@
                 Minibus</div>
         </div>
         <div class="p-4 pb-0">
-            <h5 class="text-primary mb-3">50 000 FCFA/jour</h5>
+            <h5 class="text-primary mb-3">50 000 $ CA/jour</h5>
             <a class="d-block h5 mb-2" href="#">Toyota Hiace</a>
             <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
         </div>

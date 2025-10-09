@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             AdminUserSeeder::class,
             SlideSeeder::class,
             VehicleSeeder::class,
+            PropertySeeder::class,
         ]);
     }
 }

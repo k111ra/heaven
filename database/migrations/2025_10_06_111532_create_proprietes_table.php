@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('propriete', function (Blueprint $table) {
+        Schema::create('proprietes', function (Blueprint $table) {
             $table->id();
             $table->string('title');                         // Ex: "Villa de luxe à Cocody"
             $table->text('description')->nullable();          // Description détaillée
             $table->string('address')->nullable();            // Ex: "Cocody Riviera, Abidjan"
-            $table->decimal('price', 15, 0)->default(0);      // 150,000,000 FCFA
+            $table->decimal('price', 15, 0)->default(0);      // 150,000,000 $ CA
+            $table->enum('status', ['sale', 'rent'])->default('sale'); // Statut de la propriété
             $table->integer('surface')->nullable();           // 500 m²
             $table->integer('bedrooms')->nullable();          // 5 chambres
             $table->integer('bathrooms')->nullable();         // 4 salles de bain
@@ -34,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('propriete');
+        Schema::dropIfExists('proprietes');
     }
 };

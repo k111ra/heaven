@@ -38,7 +38,7 @@
                                 <th style="width:72px">Image</th>
                                 <th>Titre</th>
                                 <th>Adresse</th>
-                                <th class="text-end">Prix (FCFA)</th>
+                                <th class="text-end">Prix ($ CA)</th>
                                 <th class="text-center">Surf. (m²)</th>
                                 <th class="text-center">Ch.</th>
                                 <th class="text-center">Sdb</th>
@@ -134,51 +134,110 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-8">
-                                <label class="form-label">Titre</label>
-                                <input type="text" name="title" class="form-control" required>
+                                <label class="form-label">Titre <span class="text-danger">*</span></label>
+                                <input type="text" name="title"
+                                    class="form-control @error('title') is-invalid @enderror" required>
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Prix (FCFA)</label>
-                                <input type="number" name="price" class="form-control" min="0" step="1"
+                                <label class="form-label">Prix ($ CA) <span class="text-danger">*</span></label>
+                                <input type="number" name="price"
+                                    class="form-control @error('price') is-invalid @enderror" min="0" step="1"
                                     required>
+                                @error('price')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">Adresse</label>
-                                <input type="text" name="address" class="form-control">
+                                <input type="text" name="address"
+                                    class="form-control @error('address') is-invalid @enderror">
+                                @error('address')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="col-md-3">
                                 <label class="form-label">Surface (m²)</label>
-                                <input type="number" name="surface" class="form-control" min="0">
+                                <input type="number" name="surface"
+                                    class="form-control @error('surface') is-invalid @enderror" min="0">
+                                @error('surface')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Chambres</label>
-                                <input type="number" name="bedrooms" class="form-control" min="0">
+                                <input type="number" name="bedrooms"
+                                    class="form-control @error('bedrooms') is-invalid @enderror" min="0">
+                                @error('bedrooms')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Salles de bain</label>
-                                <input type="number" name="bathrooms" class="form-control" min="0">
+                                <input type="number" name="bathrooms"
+                                    class="form-control @error('bathrooms') is-invalid @enderror" min="0">
+                                @error('bathrooms')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Garage</label>
-                                <input type="number" name="garage" class="form-control" min="0">
+                                <input type="number" name="garage"
+                                    class="form-control @error('garage') is-invalid @enderror" min="0">
+                                @error('garage')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Agent (ID)</label>
-                                <input type="number" name="agent_id" class="form-control" min="1"
+                                <input type="number" name="agent_id"
+                                    class="form-control @error('agent_id') is-invalid @enderror" min="1"
                                     placeholder="optionnel">
+                                @error('agent_id')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="col-md-6">
                                 <label class="form-label">Image (principale)</label>
-                                <input type="file" name="image" class="form-control" accept="image/*">
+                                <input type="file" name="image"
+                                    class="form-control @error('image') is-invalid @enderror" accept="image/*">
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
 
                             <div class="col-12">
                                 <label class="form-label">Description</label>
-                                <textarea name="description" class="form-control" rows="4"></textarea>
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="4"></textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -211,11 +270,11 @@
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-8">
-                                <label class="form-label">Titre</label>
+                                <label class="form-label">Titre <span class="text-danger">*</span></label>
                                 <input type="text" name="title" class="form-control" id="edit-title" required>
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Prix (FCFA)</label>
+                                <label class="form-label">Prix ($ CA) <span class="text-danger">*</span></label>
                                 <input type="number" name="price" class="form-control" id="edit-price"
                                     min="0" step="1" required>
                             </div>

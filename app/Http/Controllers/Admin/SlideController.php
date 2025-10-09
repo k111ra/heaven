@@ -35,7 +35,7 @@ class SlideController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'order' => 'required|integer',
-            'active' => 'boolean',
+            'active' => 'nullable|boolean',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -44,8 +44,8 @@ class SlideController extends Controller
             $validated['image'] = $path;
         }
 
-        // Convertir le checkbox en boolean
-        $validated['active'] = $request->has('active') ? true : false;
+        // S'assurer que active est un booléen strict
+        $validated['active'] = $request->has('active') && $request->input('active') == '1';
 
         Slide::create($validated);
 
@@ -78,7 +78,7 @@ class SlideController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'order' => 'required|integer',
-            'active' => 'boolean',
+            'active' => 'nullable|boolean',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
@@ -94,8 +94,8 @@ class SlideController extends Controller
             $validated['image'] = $imagePath;
         }
 
-        // Convertir le checkbox en boolean
-        $validated['active'] = $request->has('active') ? true : false;
+        // S'assurer que active est un booléen strict
+        $validated['active'] = $request->has('active') && $request->input('active') == '1';
 
         $slide->update($validated);
 

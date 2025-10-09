@@ -16,7 +16,7 @@
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">{{ $vehicle->name }}</h1>
                     <p class="mb-4">{{ $vehicle->description }}</p>
-                    <p><strong>Prix :</strong> {{ number_format($vehicle->price_per_day, 0, ',', ' ') }} FCFA/jour</p>
+                    <p><strong>Prix :</strong> {{ number_format($vehicle->price_per_day, 0, ',', ' ') }} $ CA/jour</p>
                     <div class="row g-4 mb-4">
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">

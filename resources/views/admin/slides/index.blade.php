@@ -151,26 +151,47 @@
                                     @endif
                                 </div>
                                 <label class="form-label">Nouvelle image (optionnel)</label>
-                                <input type="file" class="form-control" name="image"
-                                    accept="image/jpeg,image/png,image/jpg">
+                                <input type="file" class="form-control @error('image') is-invalid @enderror"
+                                    name="image" accept="image/jpeg,image/png,image/jpg">
+                                @error('image')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                                 <small class="form-text text-muted">Laissez vide pour garder l'image actuelle</small>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Titre</label>
-                                <input type="text" class="form-control" name="title" value="{{ $slide->title }}"
-                                    required>
+                                <label class="form-label">Titre <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    name="title" value="{{ $slide->title }}" required>
+                                @error('title')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Description</label>
-                                <textarea class="form-control" name="description" rows="3" required>{{ $slide->description }}</textarea>
+                                <label class="form-label">Description <span class="text-danger">*</span></label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3" required>{{ $slide->description }}</textarea>
+                                @error('description')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Ordre</label>
-                                <input type="number" class="form-control" name="order" value="{{ $slide->order }}"
-                                    required>
+                                <label class="form-label">Ordre <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control @error('order') is-invalid @enderror"
+                                    name="order" value="{{ $slide->order }}" required min="0">
+                                @error('order')
+                                    <div class="invalid-feedback">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" name="active"
+                                <input type="hidden" name="active" value="0">
+                                <input type="checkbox" class="form-check-input" name="active" value="1"
                                     id="activeCheck{{ $slide->id }}" {{ $slide->active ? 'checked' : '' }}>
                                 <label class="form-check-label" for="activeCheck{{ $slide->id }}">Actif</label>
                             </div>
@@ -197,27 +218,57 @@
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label">Image (formats acceptés : jpeg, png, jpg, max : 2Mo)</label>
-                            <input type="file" class="form-control" name="image"
-                                accept="image/jpeg,image/png,image/jpg" required>
+                            <label class="form-label">Image <span class="text-danger">*</span></label>
+                            <input type="file"
+                                class="form-control @error('images') is-invalid @enderror @error('images.*') is-invalid @enderror"
+                                name="images[]" accept="image/jpeg,image/png,image/jpg" multiple required>
+                            @error('images')
+                                <div class="invalid-feedback">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                </div>
+                            @enderror
+                            @error('images.*')
+                                <div class="invalid-feedback">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                </div>
+                            @enderror
                             <small class="form-text text-muted">
-                                L'image sera redimensionnée automatiquement
+                                Formats acceptés : JPEG, PNG, JPG. Taille max : 2Mo par image.
                             </small>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Titre</label>
-                            <input type="text" class="form-control" name="title" required>
+                            <label class="form-label">Titre <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                name="title" required>
+                            @error('title')
+                                <div class="invalid-feedback">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Description</label>
-                            <textarea class="form-control" name="description" rows="3" required></textarea>
+                            <label class="form-label">Description <span class="text-danger">*</span></label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="3" required></textarea>
+                            @error('description')
+                                <div class="invalid-feedback">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Ordre</label>
-                            <input type="number" class="form-control" name="order" required>
+                            <label class="form-label">Ordre <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control @error('order') is-invalid @enderror"
+                                name="order" required min="0">
+                            @error('order')
+                                <div class="invalid-feedback">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" name="active" id="activeCheck">
+                            <input type="hidden" name="active" value="0">
+                            <input type="checkbox" class="form-check-input" name="active" value="1"
+                                id="activeCheck" {{ old('active', 1) ? 'checked' : '' }}>
                             <label class="form-check-label" for="activeCheck">Actif</label>
                         </div>
                     </div>
@@ -230,3 +281,76 @@
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        // Validation en temps réel pour les modaux
+        document.querySelectorAll('.modal form').forEach(form => {
+            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    validateModalField(this);
+                });
+
+                input.addEventListener('blur', function() {
+                    validateModalField(this);
+                });
+            });
+
+            form.addEventListener('submit', function(e) {
+                let hasErrors = false;
+
+                inputs.forEach(input => {
+                    if (!validateModalField(input)) {
+                        hasErrors = true;
+                    }
+                });
+
+                if (hasErrors) {
+                    e.preventDefault();
+                    showModalErrorToast('Veuillez corriger les erreurs avant de soumettre');
+                }
+            });
+        });
+
+        function validateModalField(field) {
+            const value = field.value.trim();
+            const isValid = field.type === 'file' ? field.files.length > 0 : value !== '';
+
+            field.classList.remove('is-valid', 'is-invalid');
+
+            if (isValid) {
+                field.classList.add('is-valid');
+                return true;
+            } else {
+                field.classList.add('is-invalid');
+                return false;
+            }
+        }
+
+        function showModalErrorToast(message) {
+            const toastHtml = `
+            <div class="toast position-fixed top-0 end-0 m-3" role="alert" style="z-index: 9999;">
+                <div class="toast-header bg-danger text-white">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <strong class="me-auto">Erreur</strong>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    ${message}
+                </div>
+            </div>
+        `;
+
+            document.body.insertAdjacentHTML('beforeend', toastHtml);
+            const toastElement = document.querySelector('.toast:last-child');
+            const toast = new bootstrap.Toast(toastElement);
+            toast.show();
+
+            toastElement.addEventListener('hidden.bs.toast', () => {
+                toastElement.remove();
+            });
+        }
+    </script>
+@endpush

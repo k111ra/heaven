@@ -27,7 +27,7 @@
                 <div class="col-lg-8">
                     <div class="mb-5">
                         <h2 class="mb-3">Villa de luxe à Cocody</h2>
-                        <h3 class="text-primary mb-4">150,000,000 FCFA</h3>
+                        <h3 class="text-primary mb-4">150,000,000 $ CA</h3>
                         <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Cocody Riviera, Abidjan</p>
                         <p class="mb-4">Description détaillée de la propriété avec toutes ses caractéristiques...</p>
                     </div>
