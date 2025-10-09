@@ -86,7 +86,7 @@
                                             </button>
 
                                             {{-- DELETE --}}
-                                            <form action="{{ route('admin.proprietes.destroy', $proprietes) }}"
+                                            <form action="{{ route('admin.proprietes.destroy', $property->id) }}"
                                                 method="POST" class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
@@ -369,8 +369,7 @@
 
                 // Action dynamique du form (route PUT)
                 const form = document.getElementById('editPropertyForm');
-                const base = @json(route('admin.proprietes.update', ['propriete' => '__ID__']));
-                form.action = base.replace('__ID__', id);
+                form.action = `{{ route('admin.proprietes.index') }}/${id}`;
             });
 
         });

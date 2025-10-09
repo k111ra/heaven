@@ -51,7 +51,7 @@ class AdminProprieteController extends Controller
     /**
      * Mise à jour (depuis le modal "Modifier")
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, Property $propriete)
     {
         $data = $request->validate([
             'title'       => ['required', 'string', 'max:255'],
@@ -68,28 +68,29 @@ class AdminProprieteController extends Controller
 
         // Si une nouvelle image est envoyée, supprimer l’ancienne et enregistrer la nouvelle
         if ($request->hasFile('image')) {
-            if (!empty($property->image) && Storage::disk('public')->exists($property->image)) {
-                Storage::disk('public')->delete($property->image);
+            if (!empty($propriete->image) && Storage::disk('public')->exists($propriete->image)) {
+                Storage::disk('public')->delete($propriete->image);
             }
             $data['image'] = $request->file('image')
                 ->store('properties', 'public');
         }
 
-        $property->update($data);
+        $propriete->update($data);
 
-        return back()->with('success', 'Propriété mise à jour avec succès.');
+        return redirect()->route('admin.proprietes.index')
+            ->with('success', 'Propriété mise à jour avec succès.');
     }
 
     /**
      * Suppression
      */
-    public function destroy(Property $property)
+    public function destroy(Property $propriete)
     {
-        if (!empty($property->image) && Storage::disk('public')->exists($property->image)) {
-            Storage::disk('public')->delete($property->image);
+        if (!empty($propriete->image) && Storage::disk('public')->exists($propriete->image)) {
+            Storage::disk('public')->delete($propriete->image);
         }
 
-        $property->delete();
+        $propriete->delete();
 
         return back()->with('success', 'Propriété supprimée avec succès.');
     }

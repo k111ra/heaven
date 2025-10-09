@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminProprieteController;
+use App\Http\Controllers\ProprieteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
@@ -41,10 +42,12 @@ Route::prefix('services')->group(function () {
 // ===============================
 // 🔹 IMMOBILIER
 // ===============================
-Route::prefix('immobilier')->group(function () {
-    Route::view('/', 'services.immobilier.index')->name('immobilier.index');
-    Route::view('/proprietes', 'services.immobilier.proprietes.index')->name('immobilier.proprietes');
-    Route::view('/detail-propriete', 'services.immobilier.proprietes.detail')->name('immobilier.detail');
+Route::prefix('immobilier')->name('immobilier.')->group(function () {
+    Route::get('/', [ProprieteController::class, 'types'])->name('index');
+    Route::get('/proprietes', [ProprieteController::class, 'index'])->name('proprietes.index');
+    Route::get('/proprietes/recherche', [ProprieteController::class, 'search'])->name('proprietes.search');
+    Route::get('/proprietes/{property}', [ProprieteController::class, 'show'])->name('proprietes.show');
+    Route::post('/proprietes/{property}/contact', [ProprieteController::class, 'contact'])->name('proprietes.contact');
 });
 
 // ===============================
@@ -93,7 +96,7 @@ Route::prefix('admin')
 
         // Gestion des propriétés (immobilier)
         Route::resource('proprietes', AdminProprieteController::class)
-            ->except(['create', 'edit', 'show']);
+            ->parameters(['proprietes' => 'propriete']);
     });
 
 // ===============================
