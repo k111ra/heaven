@@ -7,7 +7,7 @@
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h3">Gestion immobilière – Propriétés</h1>
             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createPropertyModal">
-                <span class="material-symbols-rounded align-middle">add</span>
+                <i class="fas fa-plus me-2"></i>
                 <span class="align-middle">Ajouter une propriété</span>
             </button>
         </div>
@@ -155,7 +155,7 @@
                                 @enderror
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label class="form-label">Adresse</label>
                                 <input type="text" name="address"
                                     class="form-control @error('address') is-invalid @enderror">
@@ -164,6 +164,20 @@
                                         <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Type de bien</label>
+                                <select name="type" class="form-select" id="edit-type">
+                                    <option value="">Sélectionner...</option>
+                                    <option value="Maison">Maison</option>
+                                    <option value="Appartement">Appartement</option>
+                                    <option value="Bureau">Bureau</option>
+                                    <option value="Terrain">Terrain</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Villa">Villa</option>
+                                    <option value="Entrepot">Entrepot</option>
+                                    <option value="Immeuble">Immeubles</option>
+                                </select>
                             </div>
 
                             <div class="col-md-3">
@@ -232,7 +246,7 @@
 
                             <div class="col-12">
                                 <label class="form-label">Description</label>
-                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="4"></textarea>
+                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" rows="2"></textarea>
                                 @error('description')
                                     <div class="invalid-feedback">
                                         <i class="fas fa-exclamation-triangle me-1"></i>{{ $message }}
@@ -279,9 +293,23 @@
                                     min="0" step="1" required>
                             </div>
 
-                            <div class="col-12">
+                            <div class="col-6">
                                 <label class="form-label">Adresse</label>
                                 <input type="text" name="address" class="form-control" id="edit-address">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label">Type de bien</label>
+                                <select name="type" class="form-select" id="edit-type">
+                                    <option value="">Sélectionner...</option>
+                                    <option value="Maison">Maison</option>
+                                    <option value="Appartement">Appartement</option>
+                                    <option value="Bureau">Bureau</option>
+                                    <option value="Terrain">Terrain</option>
+                                    <option value="Commercial">Commercial</option>
+                                    <option value="Villa">Villa</option>
+                                    <option value="Entrepot">Entrepot</option>
+                                    <option value="Immeuble">Immeubles</option>
+                                </select>
                             </div>
 
                             <div class="col-md-3">
@@ -319,7 +347,7 @@
 
                             <div class="col-12">
                                 <label class="form-label">Description</label>
-                                <textarea name="description" class="form-control" id="edit-description" rows="4"></textarea>
+                                <textarea name="description" class="form-control" id="edit-description" rows="1"></textarea>
                             </div>
                         </div>
                     </div>

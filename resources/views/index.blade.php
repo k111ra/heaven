@@ -109,9 +109,13 @@
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
                                         <a href="{{ url('/immobilier/' . $property->id) }}">
-                                            <img class="img-fluid"
-                                                src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
-                                                alt="{{ $property->title }}">
+                                            <div
+                                                style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
+                                                <img class="img-fluid"
+                                                    src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
+                                                    alt="{{ $property->title }}"
+                                                    style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                                            </div>
                                         </a>
                                         <div
                                             class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
@@ -163,9 +167,13 @@
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
                                         <a href="{{ url('/immobilier/' . $property->id) }}">
-                                            <img class="img-fluid"
-                                                src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
-                                                alt="{{ $property->title }}">
+                                            <div
+                                                style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
+                                                <img class="img-fluid"
+                                                    src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
+                                                    alt="{{ $property->title }}"
+                                                    style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                                            </div>
                                         </a>
                                         <div
                                             class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
@@ -217,9 +225,13 @@
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
                                         <a href="{{ url('/immobilier/' . $property->id) }}">
-                                            <img class="img-fluid"
-                                                src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
-                                                alt="{{ $property->title }}">
+                                            <div
+                                                style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
+                                                <img class="img-fluid"
+                                                    src="{{ $property->image_url ?? asset('img/property-1.jpg') }}"
+                                                    alt="{{ $property->title }}"
+                                                    style="width:100%; height:100%; object-fit:cover; object-position:center;">
+                                            </div>
                                         </a>
                                         <div
                                             class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
@@ -355,15 +367,13 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <img class="img-fluid w-100"
-                        src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80"
-                        alt="Nettoyage">
+                    <img class="img-fluid w-100" src=" {{ asset('img/HGL-Nettoyage-800x533px.png') }}" alt="Nettoyage">
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Service de Nettoyage</h1>
                     <p class="mb-4">Nous proposons des services de nettoyage professionnels pour vos maisons, bureaux et
                         locaux commerciaux. Qualité et rapidité garanties.</p>
-                    <a class="btn btn-primary py-2 px-4 mt-2" href="{{ url('nettoyage') }}">Voir plus</a>
+                    <a class="btn btn-primary py-2 px-4 mt-2" href="{{ url('/services/nettoyage') }}">Voir plus</a>
                 </div>
             </div>
         </div>
@@ -375,55 +385,31 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <img class="img-fluid w-100"
-                        src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
-                        alt="Événementiel">
+                    <img class="img-fluid w-100" src="{{ asset('img/Event-800x533.png') }}" alt="Événementiel">
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Organisation Événementielle</h1>
                     <p class="mb-4">Confiez-nous l’organisation de vos événements privés ou professionnels. Notre équipe
                         assure la réussite de vos projets.</p>
-                    <a class="btn btn-primary py-2 px-4 mt-2" href="#">{{ url('evenementiel') }}</a>
+                    <a class="btn btn-primary py-2 px-4 mt-2" href="{{ url('/services/evenementiel') }}">Voir plus</a>
                 </div>
             </div>
         </div>
     </div>
     <!-- Section Événementiel End -->
 
-    <!-- Section Location de Véhicule Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <img class="img-fluid w-100"
-                        src="https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=800&q=80"
-                        alt="Location de véhicule">
-                </div>
-                <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <h1 class="mb-4">Location de Véhicule</h1>
-                    <p class="mb-4">Découvrez notre service de location de véhicules adaptés à tous vos besoins :
-                        particuliers, entreprises, événements.</p>
-                    <a class="btn btn-primary py-2 px-4 mt-2" href="#">{{ url('location-vehicule') }}</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Section Location de Véhicule End -->
-
     <!-- Section Consulting Start -->
-    <div class="container-xxl py-5 bg-light">
+    <div class="container-xxl py-5 ">
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                    <img class="img-fluid w-100"
-                        src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80"
-                        alt="Consulting">
+                    <img class="img-fluid w-100" src="{{ asset('img/HGL-consulting-800x533px.png') }}" alt="Consulting">
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                     <h1 class="mb-4">Consulting</h1>
                     <p class="mb-4">Bénéficiez de notre expertise en consulting pour optimiser vos projets immobiliers,
                         événementiels ou commerciaux.</p>
-                    <a class="btn btn-primary py-2 px-4 mt-2" href="#">{{ url('consulting') }}</a>
+                    <a class="btn btn-primary py-2 px-4 mt-2" href="{{ url('/services/consulting') }}">Voir plus</a>
                 </div>
             </div>
         </div>

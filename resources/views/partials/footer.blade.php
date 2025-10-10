@@ -16,11 +16,11 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Liens Rapides</h5>
-                <a class="btn btn-link text-white-50" href="">À Propos</a>
-                <a class="btn btn-link text-white-50" href="">Nous Contacter</a>
-                <a class="btn btn-link text-white-50" href="">Nos Services</a>
-                <a class="btn btn-link text-white-50" href="">Politique de Confidentialité</a>
-                <a class="btn btn-link text-white-50" href="">Conditions Générales</a>
+                <a class="btn btn-link text-white-50" href="{{ url('a-propos') }}">À Propos</a>
+                <a class="btn btn-link text-white-50" href="{{ url('contact') }}">Nous Contacter</a>
+                <a class="btn btn-link text-white-50" href="/">Nos Services</a>
+                <a class="btn btn-link text-white-50" href="#">Politique de Confidentialité</a>
+                <a class="btn btn-link text-white-50" href="#">Conditions Générales</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Galerie Photo</h5>
@@ -68,11 +68,10 @@
                 <div class="col-md-6 text-center text-md-end">
                     <div class="footer-menu">
 
-                        <a href="">Accueil</a>
-                        <a href="">Cookies</a>
-                        <a href="">Aide</a>
-                        <a href="">FAQ</a>
-                        <a href="">dashboard</a>
+                        <a href="/">Accueil</a>
+                        <a href="#">Cookies</a>
+                        <a href="#">Aide</a>
+                        <a href="#">FAQ</a>
                         <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
                     </div>
                 </div>
