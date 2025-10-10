@@ -1,8 +1,26 @@
 @extends('layouts.layout')
 @section('title', 'Heaven League')
+
+@push('styles')
+    <style>
+        /* Margin négatif uniquement sur desktop */
+        @media (min-width: 768px) {
+            .header {
+                margin-top: -120px;
+            }
+        }
+
+        /* Sur mobile, pas de margin négatif */
+        @media (max-width: 767.98px) {
+            .header {
+                margin-top: 100;
+            }
+        }
+    </style>
+@endpush
 @section('content')
     <!-- Header Start -->
-    <div class="container-fluid p-0" style="margin-top: -120px;">
+    <div class="container-fluid p-0 header">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
                 @foreach ($slides as $index => $slide)
@@ -579,14 +597,5 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
 
 @endsection
