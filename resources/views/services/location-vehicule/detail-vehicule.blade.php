@@ -35,7 +35,8 @@
                             <img class="img-fluid w-100" src="{{ asset('storage/' . $vehicle->images->first()->path) }}"
                                 alt="{{ $vehicle->name }}">
                         @else
-                            <img class="img-fluid w-100" src="{{ asset('img/property-4.jpg') }}" alt="{{ $vehicle->name }}">
+                            <img class="img-fluid w-100" src="{{ asset('img/property-4.jpg') }}"
+                                alt="{{ $vehicle->name }}">
                         @endif
                     </div>
                 </div>
@@ -73,29 +74,35 @@
                 </div>
             </div>
 
-            @if(isset($similarVehicles) && $similarVehicles->count() > 0)
+            @if (isset($similarVehicles) && $similarVehicles->count() > 0)
                 <div class="row mt-5">
                     <div class="col-12">
                         <h2 class="mb-4">Véhicules similaires</h2>
                         <div class="row g-4">
-                            @foreach($similarVehicles as $similar)
+                            @foreach ($similarVehicles as $similar)
                                 <div class="col-lg-4 col-md-6">
                                     <div class="property-item rounded overflow-hidden">
                                         <div class="position-relative overflow-hidden">
                                             <a href="{{ route('location-vehicule.show', $similar) }}">
                                                 @if ($similar->images->isNotEmpty())
-                                                    <img class="img-fluid" src="{{ asset('storage/' . $similar->images->first()->path) }}" alt="{{ $similar->name }}">
+                                                    <img class="img-fluid"
+                                                        src="{{ asset('storage/' . $similar->images->first()->path) }}"
+                                                        alt="{{ $similar->name }}">
                                                 @else
-                                                    <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}" alt="{{ $similar->name }}">
+                                                    <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}"
+                                                        alt="{{ $similar->name }}">
                                                 @endif
                                             </a>
-                                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                            <div
+                                                class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
                                                 À louer
                                             </div>
                                         </div>
                                         <div class="p-4 pb-0">
-                                            <h5 class="text-primary mb-3">{{ number_format($similar->price_per_day, 0, ',', ' ') }} $ CA/jour</h5>
-                                            <a class="d-block h5 mb-2" href="{{ route('location-vehicule.show', $similar) }}">{{ $similar->name }}</a>
+                                            <h5 class="text-primary mb-3">
+                                                {{ number_format($similar->price_per_day, 0, ',', ' ') }} $ CA/jour</h5>
+                                            <a class="d-block h5 mb-2"
+                                                href="{{ route('location-vehicule.show', $similar) }}">{{ $similar->name }}</a>
                                         </div>
                                     </div>
                                 </div>

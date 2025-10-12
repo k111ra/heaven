@@ -10,7 +10,8 @@
                         <nav aria-label="breadcrumb animated fadeIn">
                             <ol class="breadcrumb text-uppercase">
                                 <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
-                                <li class="breadcrumb-item"><a href="{{ route('location-vehicule.index') }}">Location Véhicule</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('location-vehicule.index') }}">Location
+                                        Véhicule</a></li>
                                 <li class="breadcrumb-item text-body active" aria-current="page">Véhicules</li>
                             </ol>
                         </nav>
@@ -21,7 +22,7 @@
                 </div>
             </div>
             <!-- Header End -->
-            
+
             <!-- Search Start -->
             <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
                 <div class="container">
@@ -34,7 +35,7 @@
                                 <div class="col-md-4">
                                     <select class="form-select border-0 py-3">
                                         <option selected>Catégorie</option>
-                                        @foreach($categories ?? [] as $category)
+                                        @foreach ($categories ?? [] as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
@@ -55,7 +56,7 @@
                 </div>
             </div>
             <!-- Search End -->
-            
+
             <div class="row g-4">
                 @forelse($vehicles as $vehicle)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -104,9 +105,9 @@
                     </div>
                 @endforelse
             </div>
-            
+
             <!-- Pagination -->
-            @if(isset($vehicles) && $vehicles->hasPages())
+            @if (isset($vehicles) && $vehicles->hasPages())
                 <div class="d-flex justify-content-center mt-5">
                     {{ $vehicles->links() }}
                 </div>
@@ -114,26 +115,25 @@
         </div>
     </div>
 @endsection
-        <div class="position-relative overflow-hidden">
-            <a href="#"><img class="img-fluid" src="{{ asset('img/property-6.jpg') }}" alt=""></a>
-            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
-            </div>
-            <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                Minibus</div>
-        </div>
-        <div class="p-4 pb-0">
-            <h5 class="text-primary mb-3">50 000 $ CA/jour</h5>
-            <a class="d-block h5 mb-2" href="#">Toyota Hiace</a>
-            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
-        </div>
-        <div class="d-flex border-top">
-            <small class="flex-fill text-center border-end py-2"><i
-                    class="fa fa-car text-primary me-2"></i>Manuelle</small>
-            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>15
-                places</small>
-            <small class="flex-fill text-center py-2"><i class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
-        </div>
+<div class="position-relative overflow-hidden">
+    <a href="#"><img class="img-fluid" src="{{ asset('img/property-6.jpg') }}" alt=""></a>
+    <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer
     </div>
+    <div class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+        Minibus</div>
+</div>
+<div class="p-4 pb-0">
+    <h5 class="text-primary mb-3">50 000 $ CA/jour</h5>
+    <a class="d-block h5 mb-2" href="#">Toyota Hiace</a>
+    <p><i class="fa fa-map-marker-alt text-primary me-2"></i>Abidjan, Côte d'Ivoire</p>
+</div>
+<div class="d-flex border-top">
+    <small class="flex-fill text-center border-end py-2"><i class="fa fa-car text-primary me-2"></i>Manuelle</small>
+    <small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>15
+        places</small>
+    <small class="flex-fill text-center py-2"><i class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
+</div>
+</div>
 </div>
 <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
     <a class="btn btn-primary py-3 px-5" href="#">Voir plus de véhicules</a>
