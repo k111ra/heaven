@@ -31,10 +31,18 @@ class VehiclePublicController extends Controller
     public function show(Vehicle $vehicle)
     {
         if (!$vehicle->is_available) {
-            abort(404);
+            abort(404, 'Véhicule non disponible');
         }
 
         $vehicle->load(['category', 'images']);
-        return view('services.location-vehicule.detail-vehicule', compact('vehicle'));
+
+        // Véhicules similaires
+        $similarVehicles = Vehicle::where('id', '!=', $vehicle->id)
+            ->where('category_id', $vehicle->category_id)
+            ->where('is_available', true)
+            ->take(3)
+            ->get();
+
+        return view('services.location-vehicule.detail-vehicule', compact('vehicle', 'similarVehicles'));
     }
 }

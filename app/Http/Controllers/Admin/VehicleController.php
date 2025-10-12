@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Vehicle;
 use App\Models\VehicleCategory;
-use App\Models\Image;
+use App\Models\VehicleImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -55,7 +55,8 @@ class VehicleController extends Controller
             if ($request->hasFile('images')) {
                 foreach ($request->file('images') as $index => $image) {
                     $path = $image->store('vehicles', 'public');
-                    $vehicle->images()->create([
+                    VehicleImage::create([
+                        'vehicle_id' => $vehicle->id,
                         'path' => $path,
                         'order' => $index,
                         'is_primary' => $index === 0,
@@ -96,13 +97,13 @@ class VehicleController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'is_available' => 'boolean',
             'remove_images' => 'array',
-            'remove_images.*' => 'integer|exists:images,id'
+            'remove_images.*' => 'integer|exists:vehicle_images,id'
         ]);
 
         // Supprimer les images sélectionnées
         if ($request->has('remove_images')) {
             foreach ($request->remove_images as $imageId) {
-                $image = $vehicle->images()->find($imageId);
+                $image = VehicleImage::where('vehicle_id', $vehicle->id)->find($imageId);
                 if ($image) {
                     Storage::disk('public')->delete($image->path);
                     $image->delete();
@@ -116,7 +117,8 @@ class VehicleController extends Controller
             foreach ($request->file('images') as $index => $file) {
                 $imagePath = $file->store('vehicles', 'public');
 
-                $vehicle->images()->create([
+                VehicleImage::create([
+                    'vehicle_id' => $vehicle->id,
                     'path' => $imagePath,
                     'order' => $existingCount + $index,
                     'is_primary' => $existingCount === 0 && $index === 0,

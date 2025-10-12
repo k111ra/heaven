@@ -317,7 +317,7 @@
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="property-item rounded overflow-hidden">
                             <div class="position-relative overflow-hidden">
-                                <a href="{{ url('/location-vehicule/' . $vehicule->id) }}">
+                                <a href="{{ route('location-vehicule.show', $vehicule) }}">
                                     <div style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
                                         @if ($vehicule->images->isNotEmpty())
                                             <img class="img-fluid"
@@ -343,7 +343,7 @@
                                 <h5 class="text-primary mb-3">{{ number_format($vehicule->price_per_day, 0, ',', ' ') }}
                                     $ CA/jour</h5>
                                 <a class="d-block h5 mb-2"
-                                    href="{{ url('/location-vehicule/' . $vehicule->id) }}">{{ $vehicule->name }}</a>
+                                    href="{{ route('location-vehicule.show', $vehicule) }}">{{ $vehicule->name }}</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>
                                     {{ $vehicule->location ?? 'Abidjan, Côte d\'Ivoire' }}
                                 </p>

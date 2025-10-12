@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\VehicleCategoryController;
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-| Routes publiques et administratives de l’application
+| Routes publiques et administratives de l'application
 |--------------------------------------------------------------------------
 */
 
@@ -68,7 +68,7 @@ Route::prefix('location-vehicule')->name('location-vehicule.')->group(function (
     Route::get('/', [App\Http\Controllers\VehiclePublicController::class, 'index'])->name('index');
     Route::get('/vehicules', [App\Http\Controllers\VehiclePublicController::class, 'list'])->name('list');
     Route::get('/{vehicle}', [App\Http\Controllers\VehiclePublicController::class, 'show'])->name('show')
-        ->where('vehicle', '[0-9]+');
+        ->where('vehicle', '[a-zA-Z0-9\-]+');
 });
 
 // ===============================

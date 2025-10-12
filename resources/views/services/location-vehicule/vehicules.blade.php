@@ -9,9 +9,9 @@
                         <h1 class="display-5 animated fadeIn mb-4">Type de vehicules</h1>
                         <nav aria-label="breadcrumb animated fadeIn">
                             <ol class="breadcrumb text-uppercase">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-body active" aria-current="page">type de vehicules</li>
+                                <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
+                                <li class="breadcrumb-item"><a href="{{ route('location-vehicule.index') }}">Location Véhicule</a></li>
+                                <li class="breadcrumb-item text-body active" aria-current="page">Véhicules</li>
                             </ol>
                         </nav>
                     </div>
@@ -21,6 +21,7 @@
                 </div>
             </div>
             <!-- Header End -->
+            
             <!-- Search Start -->
             <div class="container-fluid bg-primary mb-5 wow fadeIn" data-wow-delay="0.1s" style="padding: 35px;">
                 <div class="container">
@@ -28,33 +29,33 @@
                         <div class="col-md-10">
                             <div class="row g-2">
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control border-0 py-3" placeholder="Search Keyword">
+                                    <input type="text" class="form-control border-0 py-3" placeholder="Rechercher...">
                                 </div>
                                 <div class="col-md-4">
                                     <select class="form-select border-0 py-3">
-                                        <option selected>Property Type</option>
-                                        <option value="1">Property Type 1</option>
-                                        <option value="2">Property Type 2</option>
-                                        <option value="3">Property Type 3</option>
+                                        <option selected>Catégorie</option>
+                                        @foreach($categories ?? [] as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="col-md-4">
                                     <select class="form-select border-0 py-3">
-                                        <option selected>Location</option>
-                                        <option value="1">Location 1</option>
-                                        <option value="2">Location 2</option>
-                                        <option value="3">Location 3</option>
+                                        <option selected>Transmission</option>
+                                        <option value="manuel">Manuel</option>
+                                        <option value="automatique">Automatique</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <button class="btn btn-dark border-0 w-100 py-3">Search</button>
+                            <button class="btn btn-dark border-0 w-100 py-3">Rechercher</button>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Search End -->
+            
             <div class="row g-4">
                 @forelse($vehicles as $vehicle)
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -89,11 +90,11 @@
                             </div>
                             <div class="d-flex border-top">
                                 <small class="flex-fill text-center border-end py-2"><i
-                                        class="fa fa-car text-primary me-2"></i>{{ $vehicle->transmission }}</small>
+                                        class="fa fa-car text-primary me-2"></i>{{ ucfirst($vehicle->transmission) }}</small>
                                 <small class="flex-fill text-center border-end py-2"><i
                                         class="fa fa-user text-primary me-2"></i>{{ $vehicle->seats }} places</small>
                                 <small class="flex-fill text-center py-2"><i
-                                        class="fa fa-gas-pump text-primary me-2"></i>{{ $vehicle->fuel_type }}</small>
+                                        class="fa fa-gas-pump text-primary me-2"></i>{{ ucfirst($vehicle->fuel_type) }}</small>
                             </div>
                         </div>
                     </div>
@@ -103,17 +104,16 @@
                     </div>
                 @endforelse
             </div>
+            
+            <!-- Pagination -->
+            @if(isset($vehicles) && $vehicles->hasPages())
+                <div class="d-flex justify-content-center mt-5">
+                    {{ $vehicles->links() }}
+                </div>
+            @endif
         </div>
     </div>
 @endsection
-<small class="flex-fill text-center border-end py-2"><i class="fa fa-car text-primary me-2"></i>Manuelle</small>
-<small class="flex-fill text-center border-end py-2"><i class="fa fa-user text-primary me-2"></i>5 places</small>
-<small class="flex-fill text-center py-2"><i class="fa fa-gas-pump text-primary me-2"></i>Diesel</small>
-</div>
-</div>
-</div>
-<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-    <div class="property-item rounded overflow-hidden">
         <div class="position-relative overflow-hidden">
             <a href="#"><img class="img-fluid" src="{{ asset('img/property-6.jpg') }}" alt=""></a>
             <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">À louer

@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Str;
 
 class Vehicle extends Model
@@ -14,59 +11,60 @@ class Vehicle extends Model
     use HasFactory;
 
     protected $fillable = [
+        'category_id',
         'name',
         'slug',
+        'description',
         'brand',
         'model',
         'year',
-        'category_id',
         'transmission',
         'fuel_type',
         'seats',
         'price_per_day',
-        'description',
+        'image',
         'is_available'
     ];
 
     protected $casts = [
-        'is_available' => 'boolean',
         'price_per_day' => 'decimal:2',
+        'is_available' => 'boolean',
         'year' => 'integer',
-        'seats' => 'integer',
+        'seats' => 'integer'
     ];
 
+    // Relations
+    public function category()
+    {
+        return $this->belongsTo(VehicleCategory::class, 'category_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(VehicleImage::class);
+    }
+
+    // Accesseurs
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    // Automatically generate slug when creating
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($vehicle) {
-            $vehicle->slug = $vehicle->slug ?? Str::slug($vehicle->name);
+            if (empty($vehicle->slug)) {
+                $vehicle->slug = Str::slug($vehicle->name);
+            }
         });
-    }
 
-    public function category(): BelongsTo
-    {
-        return $this->belongsTo(VehicleCategory::class, 'category_id');
-    }
-
-    public function images(): MorphMany
-    {
-        return $this->morphMany(Image::class, 'imageable')->orderBy('order');
-    }
-
-    public function primaryImage(): MorphOne
-    {
-        return $this->morphOne(Image::class, 'imageable')->where('is_primary', true);
-    }
-
-    public function getImageUrlAttribute(): string
-    {
-        $primaryImage = $this->primaryImage;
-        return $primaryImage ? $primaryImage->url : asset('img/property-4.jpg');
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
+        static::updating(function ($vehicle) {
+            if ($vehicle->isDirty('name') && empty($vehicle->slug)) {
+                $vehicle->slug = Str::slug($vehicle->name);
+            }
+        });
     }
 }

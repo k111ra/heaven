@@ -1,5 +1,31 @@
 @extends('layouts.layout')
 @section('content')
+    <!-- Header Start -->
+    <div class="container-fluid header bg-white p-0">
+        <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+            <div class="col-md-6 p-5 mt-lg-5">
+                <h1 class="display-5 animated fadeIn mb-4">{{ $vehicle->name }}</h1>
+                <nav aria-label="breadcrumb animated fadeIn">
+                    <ol class="breadcrumb text-uppercase">
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('location-vehicule.index') }}">Location Véhicule</a>
+                        </li>
+                        <li class="breadcrumb-item text-body active">{{ $vehicle->name }}</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6 animated fadeIn">
+                @if ($vehicle->images->isNotEmpty())
+                    <img class="img-fluid" src="{{ asset('storage/' . $vehicle->images->first()->path) }}"
+                        alt="{{ $vehicle->name }}">
+                @else
+                    <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}" alt="{{ $vehicle->name }}">
+                @endif
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
     <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -21,7 +47,7 @@
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-car fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Transmission: {{ $vehicle->transmission }}</h6>
+                                <h6 class="mb-0">Transmission: {{ ucfirst($vehicle->transmission) }}</h6>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -33,7 +59,7 @@
                         <div class="col-sm-6">
                             <div class="d-flex align-items-center">
                                 <i class="fa fa-gas-pump fa-2x text-primary flex-shrink-0 me-3"></i>
-                                <h6 class="mb-0">Carburant: {{ $vehicle->fuel_type }}</h6>
+                                <h6 class="mb-0">Carburant: {{ ucfirst($vehicle->fuel_type) }}</h6>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -43,35 +69,41 @@
                             </div>
                         </div>
                     </div>
-                    <a class="btn btn-primary py-3 px-5 mt-3" href="#">Réserver maintenant</a>
+                    <a class="btn btn-primary py-3 px-5 mt-3" href="{{ url('/contact') }}">Réserver maintenant</a>
                 </div>
             </div>
 
-            <div class="row mt-5">
-                <div class="col-12">
-                    <h2 class="mb-4">Caractéristiques du véhicule</h2>
-                    <div class="row g-4">
-                        <div class="col-lg-3 col-md-6">
-                            <h5>Équipements</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-check text-primary me-2"></i>Climatisation</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>GPS</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>Bluetooth</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>USB</li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-3 col-md-6">
-                            <h5>Sécurité</h5>
-                            <ul class="list-unstyled">
-                                <li><i class="fa fa-check text-primary me-2"></i>ABS</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>Airbags</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>Alarme</li>
-                                <li><i class="fa fa-check text-primary me-2"></i>Caméra de recul</li>
-                            </ul>
+            @if(isset($similarVehicles) && $similarVehicles->count() > 0)
+                <div class="row mt-5">
+                    <div class="col-12">
+                        <h2 class="mb-4">Véhicules similaires</h2>
+                        <div class="row g-4">
+                            @foreach($similarVehicles as $similar)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="property-item rounded overflow-hidden">
+                                        <div class="position-relative overflow-hidden">
+                                            <a href="{{ route('location-vehicule.show', $similar) }}">
+                                                @if ($similar->images->isNotEmpty())
+                                                    <img class="img-fluid" src="{{ asset('storage/' . $similar->images->first()->path) }}" alt="{{ $similar->name }}">
+                                                @else
+                                                    <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}" alt="{{ $similar->name }}">
+                                                @endif
+                                            </a>
+                                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                                À louer
+                                            </div>
+                                        </div>
+                                        <div class="p-4 pb-0">
+                                            <h5 class="text-primary mb-3">{{ number_format($similar->price_per_day, 0, ',', ' ') }} $ CA/jour</h5>
+                                            <a class="d-block h5 mb-2" href="{{ route('location-vehicule.show', $similar) }}">{{ $similar->name }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </div>
 @endsection
