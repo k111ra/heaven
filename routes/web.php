@@ -46,8 +46,19 @@ Route::prefix('immobilier')->name('immobilier.')->group(function () {
     Route::get('/', [ProprieteController::class, 'types'])->name('index');
     Route::get('/proprietes', [ProprieteController::class, 'index'])->name('proprietes.index');
     Route::get('/proprietes/recherche', [ProprieteController::class, 'search'])->name('proprietes.search');
-    Route::get('/proprietes/{property}', [ProprieteController::class, 'show'])->name('proprietes.show');
-    Route::post('/proprietes/{property}/contact', [ProprieteController::class, 'contact'])->name('proprietes.contact');
+    Route::post('/proprietes/{property}/contact', [ProprieteController::class, 'contact'])
+        ->name('proprietes.contact')
+        ->where('property', '[0-9]+');
+
+    // Route principale pour le détail (celle utilisée dans les vues)
+    Route::get('/detail-propriete/{property}', [ProprieteController::class, 'show'])
+        ->name('detail')
+        ->where('property', '[0-9]+');
+
+    // Route alternative pour compatibilité
+    Route::get('/{property}', [ProprieteController::class, 'show'])
+        ->name('show')
+        ->where('property', '[0-9]+');
 });
 
 // ===============================
@@ -100,6 +111,11 @@ Route::prefix('admin')
     });
 
 // ===============================
+// 🔹 AUTH ROUTES
+// ===============================
+require __DIR__ . '/auth.php';
+// ===============================
+require __DIR__ . '/auth.php';
 // 🔹 AUTH ROUTES
 // ===============================
 require __DIR__ . '/auth.php';

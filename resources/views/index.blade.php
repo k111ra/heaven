@@ -13,7 +13,7 @@
         /* Sur mobile, pas de margin négatif */
         @media (max-width: 767.98px) {
             .header {
-                margin-top: 100;
+                margin-top: 0;
             }
         }
     </style>
@@ -126,7 +126,7 @@
                             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a href="{{ route('immobilier.detail', $property) }}">
                                             <div
                                                 style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
                                                 <img class="img-fluid"
@@ -148,7 +148,7 @@
                                         <h5 class="text-primary mb-3">
                                             {{ number_format($property->price, 0, ',', ' ') }} $ CA
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a class="d-block h5 mb-2" href="{{ route('immobilier.detail', $property) }}">
                                             {{ $property->title }}
                                         </a>
                                         <p>
@@ -174,7 +174,8 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier') }}">Voir plus proprietes</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier/proprietes') }}">Voir plus
+                                proprietes</a>
                         </div>
                     </div>
                 </div>
@@ -184,7 +185,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a href="{{ route('immobilier.detail', $property) }}">
                                             <div
                                                 style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
                                                 <img class="img-fluid"
@@ -206,7 +207,7 @@
                                         <h5 class="text-primary mb-3">
                                             {{ number_format($property->price, 0, ',', ' ') }} $ CA
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a class="d-block h5 mb-2" href="{{ route('immobilier.detail', $property) }}">
                                             {{ $property->title }}
                                         </a>
                                         <p>
@@ -232,7 +233,8 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier') }}">Voir plus proprietes</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier/proprietes') }}">Voir plus
+                                proprietes</a>
                         </div>
                     </div>
                 </div>
@@ -242,7 +244,7 @@
                             <div class="col-lg-4 col-md-6">
                                 <div class="property-item rounded overflow-hidden">
                                     <div class="position-relative overflow-hidden">
-                                        <a href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a href="{{ route('immobilier.detail', $property) }}">
                                             <div
                                                 style="width:100%; aspect-ratio: 4/3; overflow:hidden; background:#f5f5f5;">
                                                 <img class="img-fluid"
@@ -264,7 +266,7 @@
                                         <h5 class="text-primary mb-3">
                                             {{ number_format($property->price, 0, ',', ' ') }} $ CA
                                         </h5>
-                                        <a class="d-block h5 mb-2" href="{{ url('/immobilier/' . $property->id) }}">
+                                        <a class="d-block h5 mb-2" href="{{ route('immobilier.detail', $property) }}">
                                             {{ $property->title }}
                                         </a>
                                         <p>
@@ -290,7 +292,8 @@
                             </div>
                         @endforeach
                         <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier') }}">Voir plus proprietes</a>
+                            <a class="btn btn-primary py-3 px-5" href="{{ url('/immobilier/proprietes') }}">Voir plus
+                                proprietes</a>
                         </div>
                     </div>
                 </div>

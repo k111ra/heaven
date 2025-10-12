@@ -8,7 +8,7 @@
                 <nav aria-label="breadcrumb animated fadeIn">
                     <ol class="breadcrumb text-uppercase">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Accueil</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('immobilier.proprietes.index') }}">Propriétés</a></li>
+                        <li class="breadcrumb-item"><a href="{{ url('/immobilier/proprietes') }}">Propriétés</a></li>
                         <li class="breadcrumb-item text-body active">{{ $property->title }}</li>
                     </ol>
                 </nav>
@@ -81,7 +81,7 @@
                                     <div class="col-md-4">
                                         <div class="property-item rounded overflow-hidden">
                                             <div class="position-relative overflow-hidden">
-                                                <a href="{{ route('immobilier.proprietes.show', $similar) }}">
+                                                <a href="{{ route('immobilier.detail', $similar) }}">
                                                     <img class="img-fluid" src="{{ $similar->image_url }}"
                                                         alt="{{ $similar->title }}">
                                                 </a>
@@ -92,8 +92,7 @@
                                             </div>
                                             <div class="p-3">
                                                 <h6 class="text-primary mb-2">{{ $similar->price_formatted }} $ CA</h6>
-                                                <a class="d-block mb-2"
-                                                    href="{{ route('immobilier.proprietes.show', $similar) }}">
+                                                <a class="d-block mb-2" href="{{ route('immobilier.detail', $similar) }}">
                                                     {{ Str::limit($similar->title, 30) }}
                                                 </a>
                                                 <small><i
@@ -127,7 +126,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('immobilier.proprietes.contact', $property) }}" method="POST">
+                        <form action="{{ url('/immobilier/proprietes/' . $property->id . '/contact') }}" method="POST">
                             @csrf
                             <div class="mb-3">
                                 <input type="text" name="name"

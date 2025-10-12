@@ -31,7 +31,8 @@
             </div>
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icons8-apartment-100.png" alt="Icon">
@@ -42,7 +43,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
@@ -53,7 +55,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-house.png" alt="Icon">
@@ -64,7 +67,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
@@ -75,7 +79,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-building.png" alt="Icon">
@@ -86,7 +91,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-neighborhood.png" alt="Icon">
@@ -97,7 +103,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-condominium.png" alt="Icon">
@@ -108,7 +115,8 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3" href="{{ url('/immobilier/proprietes') }}">
+                    <a class="cat-item d-block bg-light text-center rounded p-3"
+                        href="{{ route('immobilier.proprietes.index') }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
                                 <img class="img-fluid" src="img/icon-luxury.png" alt="Icon">
