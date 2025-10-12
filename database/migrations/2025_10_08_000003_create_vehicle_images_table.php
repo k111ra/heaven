@@ -16,7 +16,7 @@ return new class extends Migration
             $table->boolean('is_primary')->default(false);
             $table->string('alt_text')->nullable();
             $table->timestamps();
-            
+
             $table->index('is_primary');
             $table->index('order');
         });
