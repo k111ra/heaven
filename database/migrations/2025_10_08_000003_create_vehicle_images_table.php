@@ -12,8 +12,13 @@ return new class extends Migration
             $table->id();
             $table->foreignId('vehicle_id')->constrained('vehicles')->onDelete('cascade');
             $table->string('path');
+            $table->integer('order')->default(0);
             $table->boolean('is_primary')->default(false);
+            $table->string('alt_text')->nullable();
             $table->timestamps();
+            
+            $table->index('is_primary');
+            $table->index('order');
         });
     }
 
@@ -21,5 +26,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('vehicle_images');
     }
-};
 };

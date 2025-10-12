@@ -58,9 +58,7 @@ class VehicleController extends Controller
                     VehicleImage::create([
                         'vehicle_id' => $vehicle->id,
                         'path' => $path,
-                        'order' => $index,
-                        'is_primary' => $index === 0,
-                        'alt_text' => $validated['name']
+                        'is_primary' => $index === 0
                     ]);
                 }
             }
@@ -120,9 +118,7 @@ class VehicleController extends Controller
                 VehicleImage::create([
                     'vehicle_id' => $vehicle->id,
                     'path' => $imagePath,
-                    'order' => $existingCount + $index,
-                    'is_primary' => $existingCount === 0 && $index === 0,
-                    'alt_text' => $vehicle->name
+                    'is_primary' => $existingCount === 0 && $index === 0
                 ]);
             }
         }
