@@ -108,7 +108,7 @@ class ProprieteController extends Controller
         if ($request->ajax()) {
             return response()->json([
                 'html' => view('services.immobilier.partials.property-list', compact('proprietes'))->render(),
-                'pagination' => $proprietes->links()->render()
+                'pagination' => $proprietes->render()
             ]);
         }
 
