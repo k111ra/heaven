@@ -103,12 +103,14 @@
                 <div class="bg-white rounded p-4" style="border: 1px dashed rgba(0, 185, 142, .3)">
                     <div class="row g-5 align-items-center">
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded w-100" src="{{ asset('img/call-to-action.jpg') }}" alt="">
+                            <img class="img-fluid rounded w-100" src="{{ asset('img/call-to-action.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
                             <div class="mb-4">
                                 <h1 class="mb-3">Contactez notre agent certifié</h1>
-                                <p>Contactez-nous pour plus d'informations sur nos propriétés et pour organiser une visite.</p>
+                                <p>Contactez-nous pour plus d'informations sur nos propriétés et pour organiser une visite.
+                                </p>
                             </div>
                             <a href="{{ route('contact') }}" class="btn btn-primary py-3 px-4 me-2">
                                 <i class="fa fa-phone-alt me-2"></i>Nous appeler
