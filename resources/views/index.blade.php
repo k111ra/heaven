@@ -141,7 +141,7 @@
                                         </div>
                                         <div
                                             class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $property->category->name ?? 'Type inconnu' }}
+                                            {{ $property->type ?? 'Type inconnu' }}
                                         </div>
                                     </div>
                                     <div class="p-4 pb-0">
@@ -200,7 +200,7 @@
                                         </div>
                                         <div
                                             class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $property->category->name ?? 'Type inconnu' }}
+                                            {{ $property->type ?? 'Type inconnu' }}
                                         </div>
                                     </div>
                                     <div class="p-4 pb-0">
@@ -259,7 +259,7 @@
                                         </div>
                                         <div
                                             class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
-                                            {{ $property->category->name ?? 'Type inconnu' }}
+                                            {{ $property->type ?? 'Type inconnu' }}
                                         </div>
                                     </div>
                                     <div class="p-4 pb-0">

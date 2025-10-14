@@ -26,6 +26,7 @@ class AdminProprieteController extends Controller
     {
         $data = $request->validate([
             'title'       => ['required', 'string', 'max:255'],
+            'type'        => ['nullable', 'string', 'in:' . implode(',', array_keys(Property::getTypes()))],
             'price'       => ['required', 'numeric', 'min:0'],
             'address'     => ['nullable', 'string', 'max:255'],
             'surface'     => ['nullable', 'integer', 'min:0'],
@@ -55,6 +56,7 @@ class AdminProprieteController extends Controller
     {
         $data = $request->validate([
             'title'       => ['required', 'string', 'max:255'],
+            'type'        => ['nullable', 'string', 'in:' . implode(',', array_keys(Property::getTypes()))],
             'price'       => ['required', 'numeric', 'min:0'],
             'address'     => ['nullable', 'string', 'max:255'],
             'surface'     => ['nullable', 'integer', 'min:0'],

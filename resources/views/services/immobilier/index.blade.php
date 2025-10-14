@@ -32,97 +32,97 @@
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Appartement']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icons8-apartment-100.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icons8-apartment-100.png') }}" alt="Icon">
                             </div>
-                            <h6>Apartment</h6>
-                            <span>123 Properties</span>
+                            <h6>Appartement</h6>
+                            <span>{{ $propertyTypes['Appartement'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Villa']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-villa.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-villa.png') }}" alt="Icon">
                             </div>
                             <h6>Villa</h6>
-                            <span>123 Properties</span>
+                            <span>{{ $propertyTypes['Villa'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Maison']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-house.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-house.png') }}" alt="Icon">
                             </div>
-                            <h6>Home</h6>
-                            <span>123 Properties</span>
+                            <h6>Maison</h6>
+                            <span>{{ $propertyTypes['Maison'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Bureau']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-housing.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-housing.png') }}" alt="Icon">
                             </div>
-                            <h6>Office</h6>
-                            <span>123 Properties</span>
+                            <h6>Bureau</h6>
+                            <span>{{ $propertyTypes['Bureau'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Immeuble']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-building.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-building.png') }}" alt="Icon">
                             </div>
-                            <h6>Building</h6>
-                            <span>123 Properties</span>
+                            <h6>Immeuble</h6>
+                            <span>{{ $propertyTypes['Immeuble'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Terrain']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-neighborhood.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-neighborhood.png') }}" alt="Icon">
                             </div>
-                            <h6>Townhouse</h6>
-                            <span>123 Properties</span>
+                            <h6>Terrain</h6>
+                            <span>{{ $propertyTypes['Terrain'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Commercial']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-condominium.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-condominium.png') }}" alt="Icon">
                             </div>
-                            <h6>Shop</h6>
-                            <span>123 Properties</span>
+                            <h6>Commercial</h6>
+                            <span>{{ $propertyTypes['Commercial'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
                     <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('immobilier.proprietes.index') }}">
+                        href="{{ route('immobilier.proprietes.index', ['type' => 'Entrepot']) }}">
                         <div class="rounded p-4">
                             <div class="icon mb-3">
-                                <img class="img-fluid" src="img/icon-luxury.png" alt="Icon">
+                                <img class="img-fluid" src="{{ asset('img/icon-luxury.png') }}" alt="Icon">
                             </div>
-                            <h6>Garage</h6>
-                            <span>123 Properties</span>
+                            <h6>Entrepôt</h6>
+                            <span>{{ $propertyTypes['Entrepot'] ?? 0 }} Propriétés</span>
                         </div>
                     </a>
                 </div>

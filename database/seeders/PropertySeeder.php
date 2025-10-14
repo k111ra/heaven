@@ -22,6 +22,7 @@ class PropertySeeder extends Seeder
         $properties = [
             [
                 'title' => 'Villa de luxe à Cocody',
+                'type' => 'Villa',
                 'description' => 'Magnifique villa de standing avec piscine, jardin tropical et vue panoramique. Située dans le quartier huppé de Cocody Riviera.',
                 'address' => 'Cocody Riviera, Abidjan',
                 'price' => 150000000,
@@ -35,6 +36,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Appartement moderne à Marcory',
+                'type' => 'Appartement',
                 'description' => 'Appartement de 3 pièces entièrement rénové avec terrasse et vue sur la lagune. Proche des commodités.',
                 'address' => 'Marcory Zone 4, Abidjan',
                 'price' => 25000,
@@ -48,6 +50,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Bureau moderne à Plateau',
+                'type' => 'Bureau',
                 'description' => 'Espace de bureau climatisé de 200m² au cœur du district des affaires d\'Abidjan. Idéal pour entreprise.',
                 'address' => 'Plateau, Abidjan',
                 'price' => 180000,
@@ -61,6 +64,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Maison familiale à Yopougon',
+                'type' => 'Maison',
                 'description' => 'Belle maison familiale avec cour, garage et dépendance. Quartier calme et sécurisé.',
                 'address' => 'Yopougon Niangon, Abidjan',
                 'price' => 45000000,
@@ -74,6 +78,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Studio étudiant à Treichville',
+                'type' => 'Appartement',
                 'description' => 'Studio meublé parfait pour étudiant ou jeune professionnel. Proche université et transports.',
                 'address' => 'Treichville, Abidjan',
                 'price' => 12000,
@@ -87,6 +92,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Villa avec piscine à Bassam',
+                'type' => 'Villa',
                 'description' => 'Superbe villa de vacances avec piscine privée, proche de la plage. Idéale pour week-ends.',
                 'address' => 'Grand-Bassam',
                 'price' => 80000000,
@@ -100,6 +106,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Duplex standing à Angré',
+                'type' => 'Appartement',
                 'description' => 'Duplex de standing avec terrasse panoramique, cuisine équipée et finitions haut de gamme.',
                 'address' => 'Angré 8ème tranche, Abidjan',
                 'price' => 40000,
@@ -113,6 +120,7 @@ class PropertySeeder extends Seeder
             ],
             [
                 'title' => 'Local commercial à Adjamé',
+                'type' => 'Commercial',
                 'description' => 'Local commercial bien situé dans le centre commercial d\'Adjamé. Fort passage et grande visibilité.',
                 'address' => 'Adjamé Marché, Abidjan',
                 'price' => 35000,

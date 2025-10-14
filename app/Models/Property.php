@@ -4,13 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-// use Illuminate\Database\Eloquent\SoftDeletes; // ← décommente si tu veux la corbeille
 use Illuminate\Support\Facades\Storage;
 
 class Property extends Model
 {
     use HasFactory;
-    // use SoftDeletes;
 
     /** @var string */
     protected $table = 'proprietes';
@@ -21,6 +19,7 @@ class Property extends Model
     protected $fillable = [
         'title',
         'description',
+        'type',
         'address',
         'price',
         'status',
@@ -91,6 +90,14 @@ class Property extends Model
         return asset('img/property-4.jpg'); // image par défaut
     }
 
+    /**
+     * Relation avec la catégorie (pour compatibilité avec l'ancienne structure)
+     */
+    public function category()
+    {
+        return (object)['name' => $this->type ?? 'Non spécifié'];
+    }
+
     /* ===========================
      |  SCOPES
      |===========================*/
@@ -112,15 +119,35 @@ class Property extends Model
             $q->where(function ($qq) use ($term) {
                 $qq->where('title', 'like', "%{$term}%")
                     ->orWhere('address', 'like', "%{$term}%")
-                    ->orWhere('description', 'like', "%{$term}%");
+                    ->orWhere('description', 'like', "%{$term}%")
+                    ->orWhere('type', 'like', "%{$term}%");
             });
         });
 
+        $query->when($filters['type'] ?? null, fn($q, $v) => $q->where('type', $v));
+        $query->when($filters['status'] ?? null, fn($q, $v) => $q->where('status', $v));
         $query->when($filters['price_min'] ?? null, fn($q, $v) => $q->where('price', '>=', $v));
         $query->when($filters['price_max'] ?? null, fn($q, $v) => $q->where('price', '<=', $v));
         $query->when($filters['surface_min'] ?? null, fn($q, $v) => $q->where('surface', '>=', $v));
         $query->when($filters['bedrooms_min'] ?? null, fn($q, $v) => $q->where('bedrooms', '>=', $v));
 
         return $query;
+    }
+
+    /**
+     * Types de propriétés disponibles
+     */
+    public static function getTypes()
+    {
+        return [
+            'Maison' => 'Maison',
+            'Appartement' => 'Appartement',
+            'Villa' => 'Villa',
+            'Bureau' => 'Bureau',
+            'Terrain' => 'Terrain',
+            'Commercial' => 'Commercial',
+            'Entrepot' => 'Entrepôt',
+            'Immeuble' => 'Immeuble',
+        ];
     }
 }

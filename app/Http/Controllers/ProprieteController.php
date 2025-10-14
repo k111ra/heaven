@@ -12,7 +12,7 @@ class ProprieteController extends Controller
      */
     public function index(Request $request)
     {
-        $filters = $request->only(['q', 'price_min', 'price_max', 'surface_min', 'bedrooms_min', 'status']);
+        $filters = $request->only(['q', 'price_min', 'price_max', 'surface_min', 'bedrooms_min', 'status', 'type']);
 
         $proprietes = Property::filter($filters)
             ->latest()
@@ -45,24 +45,26 @@ class ProprieteController extends Controller
     }
 
     /**
-     * Affiche les types de propriétés
+     * Affiche les types de propriétés avec compteurs réels
      */
     public function types()
     {
         $propertyTypes = [
-            'apartment' => Property::where('title', 'like', '%appartement%')->count(),
-            'villa' => Property::where('title', 'like', '%villa%')->count(),
-            'house' => Property::where('title', 'like', '%maison%')->count(),
-            'office' => Property::where('title', 'like', '%bureau%')->count(),
-            'building' => Property::where('title', 'like', '%immeuble%')->count(),
-            'studio' => Property::where('title', 'like', '%studio%')->count(),
+            'Appartement' => Property::where('type', 'Appartement')->count(),
+            'Villa' => Property::where('type', 'Villa')->count(),
+            'Maison' => Property::where('type', 'Maison')->count(),
+            'Bureau' => Property::where('type', 'Bureau')->count(),
+            'Immeuble' => Property::where('type', 'Immeuble')->count(),
+            'Commercial' => Property::where('type', 'Commercial')->count(),
+            'Terrain' => Property::where('type', 'Terrain')->count(),
+            'Entrepot' => Property::where('type', 'Entrepot')->count(),
         ];
 
         return view('services.immobilier.index', compact('propertyTypes'));
     }
 
     /**
-     * Recherche de propriétés (API)
+     * Recherche de propriétés avec support du type
      */
     public function search(Request $request)
     {
@@ -72,8 +74,13 @@ class ProprieteController extends Controller
             $query->where(function ($q) use ($request) {
                 $q->where('title', 'like', '%' . $request->q . '%')
                     ->orWhere('address', 'like', '%' . $request->q . '%')
-                    ->orWhere('description', 'like', '%' . $request->q . '%');
+                    ->orWhere('description', 'like', '%' . $request->q . '%')
+                    ->orWhere('type', 'like', '%' . $request->q . '%');
             });
+        }
+
+        if ($request->filled('type')) {
+            $query->where('type', $request->type);
         }
 
         if ($request->filled('status')) {

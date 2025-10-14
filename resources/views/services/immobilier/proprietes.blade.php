@@ -27,11 +27,22 @@
                 <div class="row g-2">
                     <div class="col-md-10">
                         <div class="row g-2">
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <input type="text" name="q" class="form-control border-0 py-3"
                                     placeholder="Rechercher..." value="{{ request('q') }}">
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-2">
+                                <select name="type" class="form-select border-0 py-3">
+                                    <option value="">Type de bien</option>
+                                    @foreach (\App\Models\Property::getTypes() as $key => $value)
+                                        <option value="{{ $key }}"
+                                            {{ request('type') === $key ? 'selected' : '' }}>
+                                            {{ $value }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-2">
                                 <select name="status" class="form-select border-0 py-3">
                                     <option value="">Tous les statuts</option>
                                     <option value="sale" {{ request('status') === 'sale' ? 'selected' : '' }}>À vendre
