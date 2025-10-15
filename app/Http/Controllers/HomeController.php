@@ -16,14 +16,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $slides = Slide::where('active', true)->orderBy('order')->get();
-        $vehicules = Vehicle::with(['images', 'category'])->where('is_available', true)->take(6)->get();
+        // Maintenant que is_active existe, on peut l'utiliser
+        $slides = Slide::where('is_active', true)->orderBy('order')->get();
 
-        // Récupérer les propriétés avec leurs relations
-        $proprietes = Property::take(6)->get();
-        $propertiesForSale = Property::where('status', 'sale')->take(6)->get();
-        $propertiesForRent = Property::where('status', 'rent')->take(6)->get();
+        // Propriétés pour l'accueil
+        $proprietes = Property::latest()->take(6)->get();
+        $propertiesForSale = Property::where('status', 'sale')->latest()->take(6)->get();
+        $propertiesForRent = Property::where('status', 'rent')->latest()->take(6)->get();
 
-        return view('index', compact('slides', 'vehicules', 'proprietes', 'propertiesForSale', 'propertiesForRent'));
+        // Véhicules pour l'accueil avec leurs catégories
+        $vehicules = Vehicle::with('category')->where('is_available', true)->latest()->take(6)->get();
+
+        return view('index', compact('slides', 'proprietes', 'propertiesForSale', 'propertiesForRent', 'vehicules'));
     }
 }

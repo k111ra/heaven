@@ -36,7 +36,7 @@ class VehiclePublicController extends Controller
 
         $vehicle->load(['category', 'images']);
 
-        // Véhicules similaires
+        // Véhicules similaires (même catégorie)
         $similarVehicles = Vehicle::where('id', '!=', $vehicle->id)
             ->where('category_id', $vehicle->category_id)
             ->where('is_available', true)

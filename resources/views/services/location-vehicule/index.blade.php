@@ -12,7 +12,7 @@
                 </nav>
             </div>
             <div class="col-md-6 animated fadeIn">
-                <img class="img-fluid" src="{{ asset('img/property-4.jpg') }}" alt="Location de véhicule">
+                <img class="img-fluid" src="{{ asset('img/HGL-Location800x533px.png') }}" alt="Location de véhicule">
             </div>
         </div>
     </div>
@@ -26,54 +26,31 @@
                 </p>
             </div>
             <div class="row g-4">
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('location-vehicule.list') }}">
-                        <div class="rounded p-4">
-                            <div class="icon mb-3">
-                                <img class="img-fluid" src="{{ asset('img/icons8-car-100.png') }}" alt="Voiture">
+                @foreach ($categories as $category)
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="cat-item d-block bg-light text-center rounded p-3"
+                            href="{{ route('location-vehicule.list', ['category' => $category->id]) }}">
+                            <div class="rounded p-4">
+                                <div class="icon mb-3">
+                                    @php
+                                        $iconMap = [
+                                            'Voiture' => 'icons8-car-100.png',
+                                            'SUV' => 'icons8-suv-100.png',
+                                            'Minibus' => 'icons8-minibus-100.png',
+                                            'Camion' => 'icons8-truck-100.png',
+                                            'Moto' => 'icons8-motorcycle-100.png',
+                                            'Scooter' => 'icons8-scooter-100.png',
+                                        ];
+                                        $icon = $iconMap[$category->name] ?? 'icons8-car-100.png';
+                                    @endphp
+                                    <img class="img-fluid" src="{{ asset('img/' . $icon) }}" alt="{{ $category->name }}">
+                                </div>
+                                <h6>{{ $category->name }}</h6>
+                                <span>{{ $category->vehicles_count ?? 0 }} véhicules</span>
                             </div>
-                            <h6>Voiture</h6>
-                            <span>45 véhicules</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('location-vehicule.list') }}">
-                        <div class="rounded p-4">
-                            <div class="icon mb-3">
-                                <img class="img-fluid" src="{{ asset('img/icons8-suv-100.png') }}" alt="SUV">
-                            </div>
-                            <h6>SUV</h6>
-                            <span>18 véhicules</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('location-vehicule.list') }}">
-                        <div class="rounded p-4">
-                            <div class="icon mb-3">
-                                <img class="img-fluid" src="{{ asset('img/icons8-minibus-100.png') }}" alt="Minibus">
-                            </div>
-                            <h6>Minibus</h6>
-                            <span>7 véhicules</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
-                    <a class="cat-item d-block bg-light text-center rounded p-3"
-                        href="{{ route('location-vehicule.list') }}">
-                        <div class="rounded p-4">
-                            <div class="icon mb-3">
-                                <img class="img-fluid" src="{{ asset('img/icons8-truck-100.png') }}" alt="Camion">
-                            </div>
-                            <h6>Camion</h6>
-                            <span>3 véhicules</span>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
