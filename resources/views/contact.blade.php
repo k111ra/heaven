@@ -50,7 +50,7 @@
                                         <div class="icon me-3" style="width: 45px; height: 45px;">
                                             <i class="fa fa-envelope-open text-primary"></i>
                                         </div>
-                                        <span>info@heavenleague-ca.com</span>
+                                        <span>info@heavenleagueca.com</span>
                                     </div>
                                 </div>
                             </div>

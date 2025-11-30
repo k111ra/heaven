@@ -6,7 +6,7 @@
                 <h5 class="text-white mb-4">Contactez-nous</h5>
                 <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>249-744 Bruce avenue,ON,P3C5H5,Sudbury</p>
                 <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>7059216550</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@heavenleague-ca.com</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@heavenleagueca.com</p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
