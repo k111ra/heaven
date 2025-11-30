@@ -454,8 +454,8 @@
                                 <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit
                                     diam justo sed vero dolor duo.</p>
                             </div>
-                            <a href="{{ url
-                                    class="fa fa-phone-alt me-2"></i>Make A Call</a>
+                            <a href="tel:+22500000000" class="btn btn-primary py-3 px-4"><i
+                                    class="fa fa-phone-alt me-2"></i>Appeler</a>
                             <a href="{{ url('/contact') }}" class="btn btn-dark py-3 px-4"><i
                                     class="fa fa-calendar-alt me-2"></i>demandez une visite</a>
                         </div>
