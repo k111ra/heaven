@@ -153,7 +153,7 @@
                                         </a>
                                         <p>
                                             <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                            {{ $property->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                            {{ $property->address ?? 'Abidjan, Côte d\'Ivoire' }}
                                         </p>
                                     </div>
                                     <div class="d-flex border-top">
@@ -212,7 +212,7 @@
                                         </a>
                                         <p>
                                             <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                            {{ $property->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                            {{ $property->address ?? 'Abidjan, Côte d\'Ivoire' }}
                                         </p>
                                     </div>
                                     <div class="d-flex border-top">
@@ -271,7 +271,7 @@
                                         </a>
                                         <p>
                                             <i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                            {{ $property->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                            {{ $property->address ?? 'Abidjan, Côte d\'Ivoire' }}
                                         </p>
                                     </div>
                                     <div class="d-flex border-top">
@@ -345,7 +345,7 @@
                                 <a class="d-block h5 mb-2"
                                     href="{{ route('location-vehicule.show', $vehicule) }}">{{ $vehicule->name }}</a>
                                 <p><i class="fa fa-map-marker-alt text-primary me-2"></i>
-                                    {{ $vehicule->location ?? 'Abidjan, Côte d\'Ivoire' }}
+                                    Abidjan, Côte d'Ivoire
                                 </p>
                             </div>
                             <div class="d-flex border-top">
@@ -454,7 +454,7 @@
                                 <p>Eirmod sed ipsum dolor sit rebum magna erat. Tempor lorem kasd vero ipsum sit sit
                                     diam justo sed vero dolor duo.</p>
                             </div>
-                            <a href="{{ url('/contact') }}" class="btn btn-primary py-3 px-4 me-2"><i
+                            <a href="{{ url
                                     class="fa fa-phone-alt me-2"></i>Make A Call</a>
                             <a href="{{ url('/contact') }}" class="btn btn-dark py-3 px-4"><i
                                     class="fa fa-calendar-alt me-2"></i>demandez une visite</a>

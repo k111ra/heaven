@@ -4,9 +4,9 @@
         <div class="row g-5">
             <div class="col-lg-3 col-md-6">
                 <h5 class="text-white mb-4">Contactez-nous</h5>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Rue, New York, USA</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>249-744 Bruce avenue,ON,P3C5H5,Sudbury</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>7059216550</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@heavenleague-ca.com</p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
                     <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
@@ -26,22 +26,28 @@
                 <h5 class="text-white mb-4">Galerie Photo</h5>
                 <div class="row g-2 pt-2">
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-1.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-1.jpg') }}"
+                            alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-2.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-2.jpg') }}"
+                            alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-3.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-3.jpg') }}"
+                            alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-4.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-4.jpg') }}"
+                            alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-5.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-5.jpg') }}"
+                            alt="">
                     </div>
                     <div class="col-4">
-                        <img class="img-fluid rounded bg-light p-1" src="img/property-6.jpg" alt="">
+                        <img class="img-fluid rounded bg-light p-1" src="{{ asset('img/property-6.jpg') }}"
+                            alt="">
                     </div>
                 </div>
             </div>
